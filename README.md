@@ -1,6 +1,4 @@
-# prapti-associates-web-application
-
-🏗️ Prapti Associates – Construction Consultancy Web Application
+# 🏗️ Prapti Associates – Construction Consultancy Web Application
 
 A modern, responsive web application developed for Prapti Associates, a construction and project consultancy firm.
 This platform showcases company projects, services, professional connections, and provides dynamic features like appointment booking, consultancy requests, and customer feedback management.
