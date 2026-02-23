@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Feedback — Prapti Associates</title>
+    <meta name="description"
+        content="Share your experience working with Prapti Associates. Your feedback helps us improve." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolled" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-icon"><i class="bi bi-building"></i></span>
+                <span class="brand-text">Prapti <span class="brand-highlight">Associates</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" id="navToggler" aria-label="Toggle navigation">
+                <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="about.html" role="button"
+                            data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="about.html#team">Our Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="projects.html" role="button"
+                            data-bs-toggle="dropdown">Projects</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="projects.html?cat=residential">Residential</a></li>
+                            <li><a class="dropdown-item" href="projects.html?cat=commercial">Commercial</a></li>
+                            <li><a class="dropdown-item" href="projects.html?cat=institutional">Institutional</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="connections.html">Connections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <a href="appointment.html" class="btn btn-appointment">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Feedback</li>
+                </ol>
+            </nav>
+            <h1 class="page-hero-title">Customer <span class="text-gold">Feedback</span></h1>
+            <p class="page-hero-subtitle">We value your opinion. Share your experience working with us.</p>
+        </div>
+    </section>
+
+    <!-- FEEDBACK FORM -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7" data-animate="fade-up">
+                    <div class="form-card">
+                        <span class="section-tag"><i class="bi bi-chat-heart-fill"></i> Your Voice Matters</span>
+                        <h2 class="section-title mb-4">Rate Your <span class="text-gold">Experience</span></h2>
+                        <form id="feedbackForm" action="/api/feedback" method="POST" enctype="multipart/form-data"
+                            class="contact-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fbName" class="form-label">Your Name *</label>
+                                    <input type="text" class="form-control" id="fbName" name="clientName"
+                                        placeholder="Your Name" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fbEmail" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="fbEmail" name="email"
+                                        placeholder="your@email.com" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fbPhone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="fbPhone" name="phone"
+                                        placeholder="+91 XXXXX XXXXX" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fbProject" class="form-label">Project Name</label>
+                                    <select class="form-select" id="fbProject" name="projectAssociated">
+                                        <option value="" disabled selected>Select Project (optional)</option>
+                                        <option value="Skyline Tower">Skyline Tower</option>
+                                        <option value="Green Valley Residences">Green Valley Residences</option>
+                                        <option value="City Public Library">City Public Library</option>
+                                        <option value="Sunrise Apartments">Sunrise Apartments</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Your Rating *</label>
+                                    <div class="star-rating" id="starRating">
+                                        <input type="hidden" name="rating" id="ratingValue" value="0" required />
+                                        <i class="bi bi-star" data-rating="1"></i>
+                                        <i class="bi bi-star" data-rating="2"></i>
+                                        <i class="bi bi-star" data-rating="3"></i>
+                                        <i class="bi bi-star" data-rating="4"></i>
+                                        <i class="bi bi-star" data-rating="5"></i>
+                                        <span class="rating-text" id="ratingText">Click to rate</span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="fbMessage" class="form-label">Your Feedback *</label>
+                                    <textarea class="form-control" id="fbMessage" name="feedback" rows="5"
+                                        placeholder="Share your experience with us..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label for="fbPhoto" class="form-label">Upload Photo (optional)</label>
+                                    <input type="file" class="form-control" id="fbPhoto" name="photo"
+                                        accept=".jpg,.jpeg,.png" />
+                                    <div class="form-text">Upload a project photo or selfie. Max 5MB.</div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-gold btn-lg w-100">
+                                        <i class="bi bi-send me-2"></i>Submit Feedback
+                                    </button>
+                                </div>
+                                <div class="col-12">
+                                    <p class="text-muted text-center small mt-2"><i
+                                            class="bi bi-info-circle me-1"></i>Your feedback will be reviewed by our
+                                        team before being published.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content success-modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="success-icon"><i class="bi bi-check-circle-fill"></i></div>
+                    <h3>Thank You!</h3>
+                    <p>Your feedback has been submitted and is pending review. We appreciate your time!</p>
+                    <button type="button" class="btn btn-gold" data-bs-dismiss="modal">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <a class="footer-brand" href="index.html"><span class="brand-icon"><i
+                                class="bi bi-building"></i></span><span class="brand-text">Prapti <span
+                                class="brand-highlight">Associates</span></span></a>
+                    <p class="footer-desc">A trusted name in construction consultancy, delivering excellence since 2012.
+                    </p>
+                    <div class="footer-social"><a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i
+                                class="bi bi-twitter-x"></i></a><a href="#"><i class="bi bi-instagram"></i></a><a
+                            href="#"><i class="bi bi-linkedin"></i></a></div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading">Our Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential</a></li>
+                        <li><a href="services.html">Interior</a></li>
+                        <li><a href="consultancy.html">Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="bi bi-geo-alt-fill"></i> Mumbai, India</li>
+                        <li><i class="bi bi-telephone-fill"></i> +91 99999 99999</li>
+                        <li><i class="bi bi-envelope-fill"></i> info@praptiassociates.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="footer-copyright">&copy; 2026 Prapti Associates.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="footer-bottom-links">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+
+</html>

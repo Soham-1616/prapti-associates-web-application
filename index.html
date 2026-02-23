@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prapti Associates — Construction Consultancy</title>
+    <meta name="description"
+        content="Prapti Associates is a leading construction consultancy delivering high-quality residential, commercial, and structural solutions with trust and professionalism." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════
+       1. NAVBAR
+  ═══════════════════════════════════════════ -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="brand-icon"><i class="bi bi-building"></i></span>
+                <span class="brand-text">Prapti <span class="brand-highlight">Associates</span></span>
+            </a>
+
+            <button class="navbar-toggler" type="button" id="navToggler" aria-label="Toggle navigation">
+                <span class="toggler-bar"></span>
+                <span class="toggler-bar"></span>
+                <span class="toggler-bar"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="about.html" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="about.html#team">Our Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="projects.html" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Projects</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="projects.html?cat=residential">Residential</a></li>
+                            <li><a class="dropdown-item" href="projects.html?cat=commercial">Commercial</a></li>
+                            <li><a class="dropdown-item" href="projects.html?cat=institutional">Institutional</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="connections.html">Connections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <a href="appointment.html" class="btn btn-appointment">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════
+       2. HERO SECTION
+  ═══════════════════════════════════════════ -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6 hero-content" data-animate="fade-right">
+                    <span class="hero-badge"><i class="bi bi-award-fill"></i> Award Winning Consultancy</span>
+                    <h1 class="hero-title">
+                        We Build Something<br />
+                        <span class="text-gold">New</span> and <span class="text-gold">Consistent.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Your ideas &amp; dreams are transformed by us into long-lasting, engineered buildings. With over
+                        a decade of expertise, we deliver excellence in every project.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="appointment.html" class="btn btn-gold btn-lg">
+                            Get Started <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="services.html" class="btn btn-outline-gold btn-lg">
+                            Our Services <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Projects Done</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image-col" data-animate="fade-left">
+                    <div class="hero-image-wrapper">
+                        <img src="images/hero-construction.png"
+                            alt="Professional construction worker at a modern building site" class="hero-image" />
+                        <div class="hero-image-accent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       3. ABOUT PREVIEW SECTION
+  ═══════════════════════════════════════════ -->
+    <section class="about-section section-padding" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-animate="fade-right">
+                    <span class="section-tag"><i class="bi bi-info-circle-fill"></i> About Us</span>
+                    <h2 class="section-title">Welcome to <span class="text-gold">Prapti Associates</span></h2>
+                    <p class="section-desc">
+                        We are a full-service construction consultancy dedicated to delivering high-quality projects on
+                        time and within budget. Our team of experts brings innovation and precision to every project.
+                    </p>
+                    <ul class="about-features">
+                        <li>
+                            <span class="feature-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <div>
+                                <strong>Quality Construction</strong>
+                                <p>We use premium materials and rigorous quality checks at every stage.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <div>
+                                <strong>Expert Team</strong>
+                                <p>Our experienced engineers and architects bring decades of expertise.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <div>
+                                <strong>On-Time Delivery</strong>
+                                <p>We pride ourselves on completing projects within agreed timelines.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="about.html" class="btn btn-gold">Read More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="col-lg-6" data-animate="fade-left">
+                    <div class="about-image-wrapper">
+                        <img src="images/about-construction.png" alt="Construction site with cranes and modern building"
+                            class="about-image" />
+                        <div class="about-experience-badge">
+                            <span class="exp-number">12+</span>
+                            <span class="exp-text">Years of<br>Excellence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       4. SERVICES SECTION
+  ═══════════════════════════════════════════ -->
+    <section class="services-section section-padding" id="services">
+        <div class="container">
+            <div class="text-center mb-5" data-animate="fade-up">
+                <span class="section-tag"><i class="bi bi-gear-fill"></i> What We Offer</span>
+                <h2 class="section-title">We Provide <span class="text-gold">Services</span></h2>
+                <p class="section-desc mx-auto" style="max-width:600px;">
+                    From concept to completion, we offer end-to-end construction consultancy services tailored to your
+                    needs.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Service Card 1 -->
+                <div class="col-md-6 col-lg-4" data-animate="fade-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-house-door-fill"></i>
+                        </div>
+                        <h4 class="service-title">Residential</h4>
+                        <p class="service-desc">
+                            We build modern, comfortable, and sustainable residential spaces tailored to your lifestyle.
+                            From villas to apartments, we deliver homes that stand the test of time.
+                        </p>
+                        <a href="services.html" class="btn btn-service">
+                            Get Started <i class="bi bi-arrow-right-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card 2 (Elevated) -->
+                <div class="col-md-6 col-lg-4" data-animate="fade-up" data-delay="200">
+                    <div class="service-card elevated">
+                        <div class="service-icon">
+                            <i class="bi bi-palette-fill"></i>
+                        </div>
+                        <h4 class="service-title">Interior Designs</h4>
+                        <p class="service-desc">
+                            Transform your spaces with our expert interior design services. We blend aesthetics with
+                            functionality to create stunning interiors that reflect your personality.
+                        </p>
+                        <a href="services.html" class="btn btn-service">
+                            Get Started <i class="bi bi-arrow-right-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="col-md-6 col-lg-4" data-animate="fade-up" data-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h4 class="service-title">Structural Repair</h4>
+                        <p class="service-desc">
+                            Our structural repair solutions strengthen and restore buildings using advanced techniques.
+                            We ensure safety, durability, and compliance with all standards.
+                        </p>
+                        <a href="services.html" class="btn btn-service">
+                            Get Started <i class="bi bi-arrow-right-circle"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Carousel Arrows -->
+            <div class="service-arrows text-center mt-4">
+                <button class="arrow-btn" aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
+                <button class="arrow-btn" aria-label="Next"><i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       5. TESTIMONIALS SECTION
+  ═══════════════════════════════════════════ -->
+    <section class="testimonials-section section-padding" id="testimonials">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5" data-animate="fade-right">
+                    <span class="section-tag light"><i class="bi bi-chat-quote-fill"></i> Testimonials</span>
+                    <h2 class="section-title text-white">
+                        Hear From Our <span class="text-gold">Satisfied Clients</span> Have to Say
+                    </h2>
+                    <p class="section-desc text-light-muted">
+                        Our clients' satisfaction is the cornerstone of our business. Here's what some of our valued
+                        clients have to say about working with Prapti Associates.
+                    </p>
+                    <div class="carousel-arrows mt-4">
+                        <button class="arrow-btn light" id="prevTestimonial" aria-label="Previous testimonial">
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
+                        <button class="arrow-btn light" id="nextTestimonial" aria-label="Next testimonial">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-animate="fade-left">
+                    <div class="testimonial-carousel" id="testimonialCarousel">
+                        <div class="testimonial-track">
+                            <!-- Slide Group 1 -->
+                            <div class="testimonial-slide active">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="testimonial-card">
+                                            <div class="testimonial-header">
+                                                <img src="images/client1.png" alt="Rajesh Sharma"
+                                                    class="testimonial-photo" />
+                                                <div>
+                                                    <h5 class="testimonial-name">Rajesh Sharma</h5>
+                                                    <span class="testimonial-role">Business Owner</span>
+                                                </div>
+                                            </div>
+                                            <p class="testimonial-text">
+                                                "Prapti Associates delivered our commercial project ahead of schedule.
+                                                Their professionalism and attention to detail is unmatched."
+                                            </p>
+                                            <div class="testimonial-stars">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="testimonial-card">
+                                            <div class="testimonial-header">
+                                                <img src="images/client1.png" alt="Meena Patel"
+                                                    class="testimonial-photo" />
+                                                <div>
+                                                    <h5 class="testimonial-name">Meena Patel</h5>
+                                                    <span class="testimonial-role">Homeowner</span>
+                                                </div>
+                                            </div>
+                                            <p class="testimonial-text">
+                                                "We couldn't be happier with our new home. The team was incredibly
+                                                supportive throughout the entire construction process."
+                                            </p>
+                                            <div class="testimonial-stars">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide Group 2 -->
+                            <div class="testimonial-slide">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="testimonial-card">
+                                            <div class="testimonial-header">
+                                                <img src="images/client1.png" alt="Arjun Desai"
+                                                    class="testimonial-photo" />
+                                                <div>
+                                                    <h5 class="testimonial-name">Arjun Desai</h5>
+                                                    <span class="testimonial-role">Real Estate Developer</span>
+                                                </div>
+                                            </div>
+                                            <p class="testimonial-text">
+                                                "Outstanding quality, reliable timelines, and transparent communication.
+                                                Prapti Associates is our go-to for every project."
+                                            </p>
+                                            <div class="testimonial-stars">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="testimonial-card">
+                                            <div class="testimonial-header">
+                                                <img src="images/client1.png" alt="Priya Nair"
+                                                    class="testimonial-photo" />
+                                                <div>
+                                                    <h5 class="testimonial-name">Priya Nair</h5>
+                                                    <span class="testimonial-role">Architect</span>
+                                                </div>
+                                            </div>
+                                            <p class="testimonial-text">
+                                                "Working with Prapti Associates is a delight. They bring designs to life
+                                                with incredible precision and craftsmanship."
+                                            </p>
+                                            <div class="testimonial-stars">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       6. LATEST PROJECTS / NEWS SECTION
+  ═══════════════════════════════════════════ -->
+    <section class="projects-section section-padding" id="projects">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3" data-animate="fade-up">
+                <div>
+                    <span class="section-tag"><i class="bi bi-grid-fill"></i> Portfolio</span>
+                    <h2 class="section-title mb-0">Latest <span class="text-gold">News and Stories</span></h2>
+                </div>
+                <a href="projects.html" class="btn btn-gold-sm">See All <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Large Featured Card -->
+                <div class="col-lg-6" data-animate="fade-right">
+                    <div class="project-card project-card-large">
+                        <div class="project-image-wrapper">
+                            <img src="images/about-construction.png" alt="Skyline Tower commercial project"
+                                class="project-image" />
+                            <div class="project-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Commercial</span>
+                            <h4 class="project-title">Skyline Tower — Commercial Complex</h4>
+                            <p class="project-desc">A 15-story commercial complex featuring modern architecture,
+                                energy-efficient design, and state-of-the-art amenities.</p>
+                            <a href="#" class="project-link">
+                                <i class="bi bi-arrow-right-circle-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Stacked Cards -->
+                <div class="col-lg-6" data-animate="fade-left">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="project-card project-card-small">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-5">
+                                        <div class="project-image-wrapper small">
+                                            <img src="images/hero-construction.png"
+                                                alt="Green Valley residential project" class="project-image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="project-content">
+                                            <span class="project-category">Residential</span>
+                                            <h5 class="project-title">Green Valley Residences</h5>
+                                            <p class="project-desc">Premium residential township with lush green
+                                                surroundings and modern amenities.</p>
+                                            <a href="#" class="project-link"><i
+                                                    class="bi bi-arrow-right-circle-fill"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="project-card project-card-small">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-5">
+                                        <div class="project-image-wrapper small">
+                                            <img src="images/about-construction.png"
+                                                alt="Metro Bridge infrastructure project" class="project-image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="project-content">
+                                            <span class="project-category">Infrastructure</span>
+                                            <h5 class="project-title">Metro Bridge Overpass</h5>
+                                            <p class="project-desc">Engineering marvel connecting two city zones with a
+                                                durable, modern overpass bridge.</p>
+                                            <a href="#" class="project-link"><i
+                                                    class="bi bi-arrow-right-circle-fill"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       7. CONTACT / CTA SECTION
+  ═══════════════════════════════════════════ -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7" data-animate="fade-right">
+                    <h2 class="cta-title text-white">Ready to Start Your <span class="text-gold">Project?</span></h2>
+                    <p class="text-light-muted mb-0">
+                        Let's discuss your project requirements. Book a free consultation with our experts today.
+                    </p>
+                </div>
+                <div class="col-lg-5 text-lg-end" data-animate="fade-left">
+                    <a href="appointment.html" class="btn btn-gold btn-lg me-2">
+                        <i class="bi bi-calendar-event me-2"></i>Book Appointment
+                    </a>
+                    <a href="tel:+919999999999" class="btn btn-outline-gold btn-lg">
+                        <i class="bi bi-telephone me-2"></i>Call Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       8. FOOTER
+  ═══════════════════════════════════════════ -->
+    <footer class="site-footer" id="footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <a class="footer-brand" href="#">
+                        <span class="brand-icon"><i class="bi bi-building"></i></span>
+                        <span class="brand-text">Prapti <span class="brand-highlight">Associates</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        A trusted name in construction consultancy, delivering excellence since 2012. We transform
+                        visions into lasting structures.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="connections.html">Connections</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading">Our Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential Construction</a></li>
+                        <li><a href="services.html">Interior Designs</a></li>
+                        <li><a href="services.html">Structural Repair</a></li>
+                        <li><a href="consultancy.html">Project Consultation</a></li>
+                        <li><a href="feedback.html">Give Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading">Contact Info</h5>
+                    <ul class="footer-contact">
+                        <li><i class="bi bi-geo-alt-fill"></i> 123 Construction Ave, Mumbai, India</li>
+                        <li><i class="bi bi-telephone-fill"></i> +91 99999 99999</li>
+                        <li><i class="bi bi-envelope-fill"></i> info@praptiassociates.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="footer-copyright">&copy; 2026 Prapti Associates. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="footer-bottom-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Network — Prapti Associates</title>
+    <meta name="description"
+        content="Meet our trusted network of engineers, architects, consultants, and co-workers." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolled" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-icon"><i class="bi bi-building"></i></span>
+                <span class="brand-text">Prapti <span class="brand-highlight">Associates</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" id="navToggler" aria-label="Toggle navigation">
+                <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="about.html" role="button"
+                            data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="about.html#team">Our Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="projects.html" role="button"
+                            data-bs-toggle="dropdown">Projects</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="projects.html?cat=residential">Residential</a></li>
+                            <li><a class="dropdown-item" href="projects.html?cat=commercial">Commercial</a></li>
+                            <li><a class="dropdown-item" href="projects.html?cat=institutional">Institutional</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="connections.html">Connections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <a href="appointment.html" class="btn btn-appointment">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Connections</li>
+                </ol>
+            </nav>
+            <h1 class="page-hero-title">Our <span class="text-gold">Network</span></h1>
+            <p class="page-hero-subtitle">Our trusted network of professionals who make every project a success.</p>
+        </div>
+    </section>
+
+    <!-- FILTER TABS + CONNECTIONS GRID -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="filter-tabs mb-5 text-center" data-animate="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="engineer">Engineers</button>
+                <button class="filter-btn" data-filter="architect">Architects</button>
+                <button class="filter-btn" data-filter="consultant">Consultants</button>
+                <button class="filter-btn" data-filter="coworker">Co-workers</button>
+            </div>
+
+            <div class="row g-4" id="connectionsGrid">
+                <!-- Engineer 1 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="engineer" data-animate="fade-up">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Vikram Singh" class="connection-photo" />
+                            <span class="connection-badge">Engineer</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Vikram Singh</h5>
+                            <p class="connection-specialization">Structural Engineering</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999911111"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:vikram@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Architect 1 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="architect" data-animate="fade-up"
+                    data-delay="100">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Ananya Mehta" class="connection-photo" />
+                            <span class="connection-badge">Architect</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Ananya Mehta</h5>
+                            <p class="connection-specialization">Modern Architecture</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999922222"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:ananya@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Consultant 1 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="consultant" data-animate="fade-up"
+                    data-delay="200">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Deepak Joshi" class="connection-photo" />
+                            <span class="connection-badge">Consultant</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Deepak Joshi</h5>
+                            <p class="connection-specialization">Project Management</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999933333"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:deepak@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Co-worker 1 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="coworker" data-animate="fade-up"
+                    data-delay="300">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Suman Rao" class="connection-photo" />
+                            <span class="connection-badge">Co-worker</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Suman Rao</h5>
+                            <p class="connection-specialization">Site Supervisor</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999944444"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:suman@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Engineer 2 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="engineer" data-animate="fade-up">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Rohit Patil" class="connection-photo" />
+                            <span class="connection-badge">Engineer</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Rohit Patil</h5>
+                            <p class="connection-specialization">Civil Engineering</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999955555"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:rohit@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Architect 2 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="architect" data-animate="fade-up"
+                    data-delay="100">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Kavita Deshmukh" class="connection-photo" />
+                            <span class="connection-badge">Architect</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Kavita Deshmukh</h5>
+                            <p class="connection-specialization">Interior Architecture</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999966666"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:kavita@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Consultant 2 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="consultant" data-animate="fade-up"
+                    data-delay="200">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Manoj Gupta" class="connection-photo" />
+                            <span class="connection-badge">Consultant</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Manoj Gupta</h5>
+                            <p class="connection-specialization">Legal & Compliance</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999977777"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:manoj@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Co-worker 2 -->
+                <div class="col-lg-3 col-md-6 connection-item" data-category="coworker" data-animate="fade-up"
+                    data-delay="300">
+                    <div class="connection-card">
+                        <div class="connection-photo-wrapper">
+                            <img src="images/client1.png" alt="Nisha Kulkarni" class="connection-photo" />
+                            <span class="connection-badge">Co-worker</span>
+                        </div>
+                        <div class="connection-info">
+                            <h5 class="connection-name">Nisha Kulkarni</h5>
+                            <p class="connection-specialization">Quality Assurance</p>
+                            <div class="connection-contact">
+                                <a href="tel:+919999988888"><i class="bi bi-telephone"></i></a>
+                                <a href="mailto:nisha@example.com"><i class="bi bi-envelope"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2 class="cta-title text-white">Want to Join Our <span class="text-gold">Network?</span></h2>
+            <p class="text-light-muted mb-4">We're always looking for talented professionals to collaborate with.</p>
+            <a href="contact.html" class="btn btn-gold btn-lg"><i class="bi bi-person-plus me-2"></i>Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <a class="footer-brand" href="index.html">
+                        <span class="brand-icon"><i class="bi bi-building"></i></span>
+                        <span class="brand-text">Prapti <span class="brand-highlight">Associates</span></span>
+                    </a>
+                    <p class="footer-desc">A trusted name in construction consultancy, delivering excellence since 2012.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-twitter-x"></i></a><a
+                            href="#"><i class="bi bi-instagram"></i></a><a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="connections.html">Connections</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading">Our Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Residential</a></li>
+                        <li><a href="services.html">Interior Designs</a></li>
+                        <li><a href="consultancy.html">Project Consultation</a></li>
+                        <li><a href="feedback.html">Give Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading">Contact Info</h5>
+                    <ul class="footer-contact">
+                        <li><i class="bi bi-geo-alt-fill"></i> 123 Construction Ave, Mumbai</li>
+                        <li><i class="bi bi-telephone-fill"></i> +91 99999 99999</li>
+                        <li><i class="bi bi-envelope-fill"></i> info@praptiassociates.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="footer-copyright">&copy; 2026 Prapti Associates. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="footer-bottom-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/connections.js"></script>
+</body>
+
+</html>
