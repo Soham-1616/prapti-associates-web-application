@@ -258,12 +258,17 @@
                 <div class="col-lg-5" data-animate="fade-right">
                     <span class="section-tag light"><i class="bi bi-chat-quote-fill"></i> Testimonials</span>
                     <h2 class="section-title text-white">
-                        Hear From Our <span class="text-gold">Satisfied Clients</span> Have to Say
+                        Hear From Our <span class="text-gold">Satisfied Clients</span>
                     </h2>
                     <p class="section-desc text-light-muted">
                         Our clients' satisfaction is the cornerstone of our business. Here's what some of our valued
                         clients have to say about working with Prapti Associates.
                     </p>
+                    <div id="homeAvgRating" style="display:none; margin-top: 15px;">
+                        <span id="homeAvgStars" style="font-size: 28px; color: #d4a437;"></span>
+                        <br>
+                        <strong id="homeAvgText" style="color: rgba(255,255,255,0.7);"></strong>
+                    </div>
                     <div class="carousel-arrows mt-4">
                         <button class="arrow-btn light" id="prevTestimonial" aria-label="Previous testimonial">
                             <i class="bi bi-arrow-left"></i>
@@ -275,110 +280,12 @@
                 </div>
                 <div class="col-lg-7" data-animate="fade-left">
                     <div class="testimonial-carousel" id="testimonialCarousel">
-                        <div class="testimonial-track">
-                            <!-- Slide Group 1 -->
-                            <div class="testimonial-slide active">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="testimonial-card">
-                                            <div class="testimonial-header">
-                                                <img src="images/client1.png" alt="Rajesh Sharma"
-                                                    class="testimonial-photo" />
-                                                <div>
-                                                    <h5 class="testimonial-name">Rajesh Sharma</h5>
-                                                    <span class="testimonial-role">Business Owner</span>
-                                                </div>
-                                            </div>
-                                            <p class="testimonial-text">
-                                                "Prapti Associates delivered our commercial project ahead of schedule.
-                                                Their professionalism and attention to detail is unmatched."
-                                            </p>
-                                            <div class="testimonial-stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="testimonial-card">
-                                            <div class="testimonial-header">
-                                                <img src="images/client1.png" alt="Meena Patel"
-                                                    class="testimonial-photo" />
-                                                <div>
-                                                    <h5 class="testimonial-name">Meena Patel</h5>
-                                                    <span class="testimonial-role">Homeowner</span>
-                                                </div>
-                                            </div>
-                                            <p class="testimonial-text">
-                                                "We couldn't be happier with our new home. The team was incredibly
-                                                supportive throughout the entire construction process."
-                                            </p>
-                                            <div class="testimonial-stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide Group 2 -->
-                            <div class="testimonial-slide">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="testimonial-card">
-                                            <div class="testimonial-header">
-                                                <img src="images/client1.png" alt="Arjun Desai"
-                                                    class="testimonial-photo" />
-                                                <div>
-                                                    <h5 class="testimonial-name">Arjun Desai</h5>
-                                                    <span class="testimonial-role">Real Estate Developer</span>
-                                                </div>
-                                            </div>
-                                            <p class="testimonial-text">
-                                                "Outstanding quality, reliable timelines, and transparent communication.
-                                                Prapti Associates is our go-to for every project."
-                                            </p>
-                                            <div class="testimonial-stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="testimonial-card">
-                                            <div class="testimonial-header">
-                                                <img src="images/client1.png" alt="Priya Nair"
-                                                    class="testimonial-photo" />
-                                                <div>
-                                                    <h5 class="testimonial-name">Priya Nair</h5>
-                                                    <span class="testimonial-role">Architect</span>
-                                                </div>
-                                            </div>
-                                            <p class="testimonial-text">
-                                                "Working with Prapti Associates is a delight. They bring designs to life
-                                                with incredible precision and craftsmanship."
-                                            </p>
-                                            <div class="testimonial-stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="testimonial-track" id="testimonialTrack">
+                            <!-- Dynamically loaded from API -->
                         </div>
+                    </div>
+                    <div id="noTestimonialsMsg" style="display:none; text-align:center; padding: 40px;">
+                        <p style="color: rgba(255,255,255,0.6);"><i class="bi bi-chat-dots me-2"></i>No reviews yet. <a href="feedback.html" style="color:#d4a437;">Be the first!</a></p>
                     </div>
                 </div>
             </div>

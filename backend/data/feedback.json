@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1774357496394",
+    "clientName": "Soham Patil",
+    "email": "sohampatil200616@gmail.com",
+    "phone": "",
+    "projectAssociated": "Skyline Tower",
+    "rating": 5,
+    "feedback": "Loved the work and the services provided by the associate.",
+    "submittedAt": "2026-03-24T13:04:56.394Z"
+  },
+  {
+    "id": "1774357633121",
+    "clientName": "Test",
+    "email": "test@test.com",
+    "phone": "",
+    "projectAssociated": "",
+    "rating": 3,
+    "feedback": "Great work",
+    "submittedAt": "2026-03-24T13:07:13.122Z"
+  },
+  {
+    "id": "1774369554588",
+    "clientName": "Pruthviraj Thorbole",
+    "email": "abcxyz@gmail.com",
+    "phone": "",
+    "projectAssociated": "Green Valley Residences",
+    "rating": 5,
+    "feedback": "Awesomeee work done!!",
+    "submittedAt": "2026-03-24T16:25:54.588Z"
+  }
+]

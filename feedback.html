@@ -149,6 +149,32 @@
         </div>
     </section>
 
+    <!-- CLIENT REVIEWS SECTION -->
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="text-center mb-5" data-animate="fade-up">
+                <span class="section-tag"><i class="bi bi-star-fill"></i> Client Reviews</span>
+                <h2 class="section-title">What Our Clients <span class="text-gold">Say</span></h2>
+                <p class="section-desc mx-auto" style="max-width:600px;">
+                    Real feedback from our valued clients. Your experience matters to us.
+                </p>
+                <div id="averageRatingDisplay" style="display:none; margin-top: 15px;">
+                    <span id="avgStars" style="font-size: 28px; color: #d4a437;"></span>
+                    <br>
+                    <strong id="avgRatingText" style="color: #555;"></strong>
+                </div>
+            </div>
+
+            <div class="row g-4" id="reviewsContainer">
+                <!-- Reviews will be loaded dynamically via JS -->
+            </div>
+
+            <div id="noReviewsMessage" class="text-center" style="display:none;">
+                <p class="text-muted"><i class="bi bi-chat-dots me-2"></i>No reviews yet. Be the first to share your experience!</p>
+            </div>
+        </div>
+    </section>
+
     <!-- SUCCESS MODAL -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
