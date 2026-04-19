@@ -35,7 +35,7 @@
                             data-bs-toggle="dropdown">About</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="about.html">About Us</a></li>
-                            <li><a class="dropdown-item" href="about.html#team">Our Team</a></li>
+
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -92,7 +92,7 @@
                             sustainable building practices. The complex features state-of-the-art office spaces, retail
                             areas, and a rooftop garden, all designed to maximize natural light and energy efficiency.
                         </p>
-                        <p>
+                        <p id="detailDescription2">
                             The construction utilized advanced techniques including reinforced concrete framing,
                             double-glazed curtain walls, and smart building management systems. The project was
                             completed ahead of schedule, reflecting our commitment to excellence and efficiency.
@@ -205,9 +205,9 @@
                 <div class="col-lg-3 col-md-4">
                     <h5 class="footer-heading">Contact</h5>
                     <ul class="footer-contact">
-                        <li><i class="bi bi-geo-alt-fill"></i> Mumbai, India</li>
-                        <li><i class="bi bi-telephone-fill"></i> +91 99999 99999</li>
-                        <li><i class="bi bi-envelope-fill"></i> info@praptiassociates.com</li>
+                        <li><i class="bi bi-geo-alt-fill"></i> 9/A Mangal Murti, Gayatri Park, Kupwad, Sangli</li>
+                        <li><i class="bi bi-telephone-fill"></i> +91 97639 96291</li>
+                        <li><i class="bi bi-envelope-fill"></i> praptiassociates555@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -228,6 +228,137 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // ═══ PROJECT DETAIL — Dynamic Content ═══
+        const projects = {
+            1: {
+                name: 'Sahyadri: Office',
+                highlight: 'Office',
+                subtitle: 'Commercial Workspace — Pune, Maharashtra',
+                category: 'Commercial',
+                client: 'Sahyadri Developers Pvt. Ltd.',
+                location: 'Pune, Maharashtra',
+                year: '2023',
+                area: '5,500 sq.ft',
+                status: 'Completed',
+                heroImg: 'images/projects/sahyadri-office/1.png',
+                gallery: ['images/projects/sahyadri-office/1.png', 'images/projects/sahyadri-office/2.png', 'images/projects/sahyadri-office/3.png'],
+                desc1: 'Sahyadri Office is a modern commercial workspace designed to enhance productivity and provide a professional business environment. The project focuses on clean interiors, efficient space planning, and contemporary design elements, making it suitable for corporate operations and client interactions.',
+                desc2: 'The office space features premium flooring, modular workstation layouts, well-lit conference rooms, and a welcoming reception area. Every design choice was made to create a productive and aesthetically pleasing work environment that reflects professionalism.'
+            },
+            2: {
+                name: 'Swaraj',
+                highlight: 'Swaraj',
+                subtitle: 'Residential Villa — Solapur, Maharashtra',
+                category: 'Residential',
+                client: 'Mr. Shrikant Patil',
+                location: 'Solapur, Maharashtra',
+                year: '2023',
+                area: '3,200 sq.ft',
+                status: 'Completed',
+                heroImg: 'images/projects/swaraj/1.png',
+                gallery: ['images/projects/swaraj/1.png', 'images/projects/swaraj/2.png', 'images/projects/swaraj/3.png'],
+                desc1: 'Swaraj is a modern residential villa project designed with a focus on contemporary architecture and functional living spaces. The project emphasizes natural lighting, ventilation, and aesthetic exterior design. It reflects a perfect balance between luxury and comfort for urban living.',
+                desc2: 'The villa features stone cladding accent walls, glass railing balconies, wooden louver detailing, and a thoughtfully planned layout that maximizes space utilization. Every element was crafted to deliver a premium living experience while maintaining structural integrity and modern aesthetics.'
+            },
+            3: {
+                name: 'Vitthal Rukmini Temple',
+                highlight: 'Temple',
+                subtitle: 'Institutional — Pandharpur, Maharashtra',
+                category: 'Institutional',
+                client: 'Vitthal Rukmini Trust',
+                location: 'Pandharpur, Maharashtra',
+                year: '2022',
+                area: '6,500 sq.ft',
+                status: 'Completed',
+                heroImg: 'images/projects/vitthal-rukmini/1.png',
+                gallery: ['images/projects/vitthal-rukmini/1.png', 'images/projects/vitthal-rukmini/2.png', 'images/projects/vitthal-rukmini/3.png'],
+                desc1: 'Vitthal Rukmini Temple is an institutional project designed to create a peaceful and spiritually uplifting environment. The architecture blends traditional temple elements with modern construction techniques, ensuring durability while maintaining cultural significance. The design focuses on open spaces, natural airflow, and a serene ambiance for visitors.',
+                desc2: 'The temple features intricately designed stone work, spacious prayer halls, well-planned pathways for devotees, and landscaped surroundings. Traditional materials were combined with modern structural engineering to create a timeless space that serves the community for generations.'
+            },
+            4: {
+                name: 'Nilaya',
+                highlight: 'Nilaya',
+                subtitle: 'Residential Villa — Pune, Maharashtra',
+                category: 'Residential',
+                client: 'Mrs. Kavita Deshmukh',
+                location: 'Pune, Maharashtra',
+                year: '2024',
+                area: '3,800 sq.ft',
+                status: 'Ongoing',
+                heroImg: 'images/projects/nilaya/1.png',
+                gallery: ['images/projects/nilaya/1.png', 'images/projects/nilaya/2.png', 'images/projects/nilaya/3.png'],
+                desc1: 'Nilaya is a premium residential project designed to provide a spacious and elegant living experience. The design integrates modern materials with traditional elements, ensuring durability and visual appeal. The project focuses on efficient space utilization and a comfortable lifestyle environment.',
+                desc2: 'The residence features clean geometric lines, ambient exterior lighting, premium wall cladding, and expansive balconies offering panoramic views. Every aspect of the design prioritizes both luxury and practical everyday living.'
+            },
+            5: {
+                name: 'Dr. Bhosale Office',
+                highlight: 'Office',
+                subtitle: 'Commercial Clinic — Solapur, Maharashtra',
+                category: 'Commercial',
+                client: 'Dr. Bhosale',
+                location: 'Solapur, Maharashtra',
+                year: '2024',
+                area: '2,800 sq.ft',
+                status: 'Completed',
+                heroImg: 'images/projects/bhosale-office/1.png',
+                gallery: ['images/projects/bhosale-office/1.png', 'images/projects/bhosale-office/2.png', 'images/projects/bhosale-office/3.png'],
+                desc1: 'Dr. Bhosale Office is a well-planned commercial clinic space designed to provide a comfortable and efficient environment for both patients and medical professionals. The design emphasizes cleanliness, proper lighting, and functional layout to ensure smooth workflow and a welcoming atmosphere.',
+                desc2: 'The clinic features hygienic wall and floor finishes, dedicated consultation rooms, a well-organized reception and waiting area, and ample natural light. The design ensures a calming environment for patients while maintaining operational efficiency for the medical team.'
+            },
+
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id') || '1';
+            const p = projects[id];
+            if (!p) return;
+
+            // Title
+            const titleEl = document.getElementById('detailTitle');
+            if (titleEl) {
+                const parts = p.name.split(' ');
+                if (parts.length > 1) {
+                    titleEl.innerHTML = parts.slice(0, -1).join(' ') + ' <span class="text-gold">' + parts[parts.length - 1] + '</span>';
+                } else {
+                    titleEl.innerHTML = '<span class="text-gold">' + p.name + '</span>';
+                }
+            }
+
+            // Subtitle & Breadcrumb
+            const subEl = document.getElementById('detailSubtitle');
+            if (subEl) subEl.textContent = p.subtitle;
+            const breadEl = document.getElementById('detailBreadcrumb');
+            if (breadEl) breadEl.textContent = p.name;
+
+            // Hero Image
+            const heroEl = document.getElementById('detailHeroImg');
+            if (heroEl) { heroEl.src = p.heroImg; heroEl.alt = p.name; }
+
+            // Description
+            const descEl = document.getElementById('detailDescription');
+            if (descEl) descEl.textContent = p.desc1;
+            const desc2El = document.getElementById('detailDescription2');
+            if (desc2El) desc2El.textContent = p.desc2;
+
+            // Sidebar Info
+            const fields = { detailClient: p.client, detailLocation: p.location, detailYear: p.year, detailArea: p.area, detailCategory: p.category, detailStatus: p.status };
+            Object.entries(fields).forEach(([elId, val]) => {
+                const el = document.getElementById(elId);
+                if (el) el.textContent = val;
+            });
+
+            // Gallery
+            const galleryImgs = document.querySelectorAll('.gallery-img');
+            p.gallery.forEach((src, i) => {
+                if (galleryImgs[i]) { galleryImgs[i].src = src; galleryImgs[i].alt = p.name + ' Gallery ' + (i + 1); }
+            });
+
+            // Page title
+            document.title = p.name + ' — Prapti Associates';
+        });
+    </script>
 </body>
 
 </html>

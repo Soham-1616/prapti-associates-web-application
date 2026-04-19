@@ -419,6 +419,16 @@ a {
     z-index: -1;
 }
 
+/* Hero Logo Override */
+.hero-image.hero-logo {
+    object-fit: contain;
+    padding: 30px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(251, 191, 36, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(251, 191, 36, 0.08);
+}
+
 
 /* ═══════════════════════════════════════════
    3. ABOUT SECTION
