@@ -2,7 +2,7 @@
 //  CONSULTANCY CONTROLLER
 // ═══════════════════════════════════════════
 
-const transporter = require('../config/emailConfig');
+const { sendMailAsync } = require('../config/emailConfig');
 const fs = require('fs');
 
 // ── Helper: Validate email format ──
@@ -131,12 +131,8 @@ exports.submitConsultancy = async (req, res) => {
             }));
         }
 
-        // ── Send email ──
-        try {
-            await transporter.sendMail(mailOptions);
-        } catch (mailError) {
-            console.error('⚠️ Nodemailer failed to send consultancy email notification (likely SMTP blocked by Render free tier):', mailError.message);
-        }
+        // ── Send email (fire-and-forget, never blocks the response) ──
+        sendMailAsync(mailOptions);
 
         // Clean up uploaded files after sending
         if (documents && documents.length > 0) {

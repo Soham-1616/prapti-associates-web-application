@@ -2,7 +2,7 @@
 //  APPOINTMENT & CONTACT CONTROLLERS
 // ═══════════════════════════════════════════
 
-const transporter = require('../config/emailConfig');
+const { transporter, sendMailAsync } = require('../config/emailConfig');
 const fs = require('fs');
 const path = require('path');
 
@@ -149,18 +149,14 @@ exports.bookAppointment = async (req, res) => {
             </div>
         `;
 
-        // ── Send email ──
-        try {
-            await transporter.sendMail({
-                from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
-                to: process.env.ADMIN_EMAIL,
-                subject: `New Appointment: ${fullName} — ${serviceType || 'General'}`,
-                html: emailHTML,
-                replyTo: email,
-            });
-        } catch (mailError) {
-            console.error('⚠️ Nodemailer failed to send booking email notification (likely SMTP blocked by Render free tier):', mailError.message);
-        }
+        // ── Send email (fire-and-forget, never blocks the response) ──
+        sendMailAsync({
+            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+            to: process.env.ADMIN_EMAIL,
+            subject: `New Appointment: ${fullName} — ${serviceType || 'General'}`,
+            html: emailHTML,
+            replyTo: email,
+        });
 
         // ── Success response ──
         return res.status(201).json({
@@ -335,17 +331,13 @@ async function sendCustomerNotification(appointment, status) {
         </div>
     `;
 
-    try {
-        await transporter.sendMail({
-            from: `"Prapti Associates" <${process.env.EMAIL_USER}>`,
-            to: appointment.email,
-            subject: `Appointment ${status} — Prapti Associates`,
-            html: emailHTML,
-        });
-        console.log(`📧 ${status} email sent to ${appointment.email}`);
-    } catch (err) {
-        console.error(`❌ Failed to send ${status} email to ${appointment.email}:`, err.message);
-    }
+    // Fire-and-forget email
+    sendMailAsync({
+        from: `"Prapti Associates" <${process.env.EMAIL_USER}>`,
+        to: appointment.email,
+        subject: `Appointment ${status} — Prapti Associates`,
+        html: emailHTML,
+    });
 }
 
 // ────────────────────────────────────────────
@@ -438,18 +430,14 @@ exports.submitContact = async (req, res) => {
             </div>
         `;
 
-        // ── Send email ──
-        try {
-            await transporter.sendMail({
-                from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
-                to: process.env.ADMIN_EMAIL,
-                subject: `Contact: ${subject} — from ${name}`,
-                html: emailHTML,
-                replyTo: email,
-            });
-        } catch (mailError) {
-            console.error('⚠️ Nodemailer failed to send contact email notification (likely SMTP blocked by Render free tier):', mailError.message);
-        }
+        // ── Send email (fire-and-forget, never blocks the response) ──
+        sendMailAsync({
+            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+            to: process.env.ADMIN_EMAIL,
+            subject: `Contact: ${subject} — from ${name}`,
+            html: emailHTML,
+            replyTo: email,
+        });
 
         // ── Success response ──
         return res.status(201).json({

@@ -8,25 +8,39 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false, // true for 465, false for other ports (587)
-    family: 4, // Force IPv4 to prevent ETIMEDOUT connection issues on Render
+    secure: false,
+    family: 4,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
     },
     tls: {
-        rejectUnauthorized: false // Avoid blockages on Render/cloud hosting
-    }
+        rejectUnauthorized: false
+    },
+    connectionTimeout: 5000,  // 5s to establish connection (fail fast)
+    greetingTimeout: 5000,    // 5s for SMTP greeting
+    socketTimeout: 10000      // 10s for socket inactivity
 });
 
-// Verify connection on startup (logs to console)
+// Verify connection on startup (non-blocking, just logs)
 transporter.verify((error, success) => {
     if (error) {
-        console.error('❌ Email config error:', error.message);
-        console.error('   Make sure EMAIL_USER and EMAIL_PASS are set correctly in .env');
+        console.warn('⚠️ Email SMTP unavailable:', error.message);
+        console.warn('   Email notifications will be skipped. Forms will still work.');
     } else {
         console.log('✅ Email server is ready to send messages');
     }
 });
 
-module.exports = transporter;
+// Helper: send email without blocking the caller (fire-and-forget)
+function sendMailAsync(mailOptions) {
+    transporter.sendMail(mailOptions)
+        .then(() => {
+            console.log(`📧 Email sent: ${mailOptions.subject}`);
+        })
+        .catch((err) => {
+            console.warn(`⚠️ Email failed (non-blocking): ${err.message}`);
+        });
+}
+
+module.exports = { transporter, sendMailAsync };

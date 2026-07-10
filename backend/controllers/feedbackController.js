@@ -2,7 +2,7 @@
 //  FEEDBACK CONTROLLER
 // ═══════════════════════════════════════════
 
-const transporter = require('../config/emailConfig');
+const { sendMailAsync } = require('../config/emailConfig');
 const fs = require('fs');
 const path = require('path');
 
@@ -179,12 +179,8 @@ exports.submitFeedback = async (req, res) => {
             }];
         }
 
-        // ── Send email ──
-        try {
-            await transporter.sendMail(mailOptions);
-        } catch (mailError) {
-            console.error('⚠️ Nodemailer failed to send feedback email notification (likely SMTP blocked by Render free tier):', mailError.message);
-        }
+        // ── Send email (fire-and-forget, never blocks the response) ──
+        sendMailAsync(mailOptions);
 
         // Clean up uploaded file after sending
         if (photo) {
