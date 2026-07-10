@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    var ABOUT_API = 'http://localhost:5000/api/about';
+    var ABOUT_API = 'https://prapti-associates.onrender.com/api/about';
 
     document.addEventListener('DOMContentLoaded', async function () {
         var introTitle = document.getElementById('aboutIntroTitle');

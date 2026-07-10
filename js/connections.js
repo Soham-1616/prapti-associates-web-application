@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const API_BASE = 'http://localhost:5000';
+    const API_BASE = 'https://prapti-associates.onrender.com';
     const grid = document.getElementById('connectionsGrid');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const loadingEl = document.getElementById('connectionsLoading');

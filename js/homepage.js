@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    var HOMEPAGE_API = 'http://localhost:5000/api/homepage';
+    var HOMEPAGE_API = 'https://prapti-associates.onrender.com/api/homepage';
 
     document.addEventListener('DOMContentLoaded', async function () {
         try {

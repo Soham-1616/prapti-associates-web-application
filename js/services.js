@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    var SERVICES_API = 'http://localhost:5000/api/services?activeOnly=true';
+    var SERVICES_API = 'https://prapti-associates.onrender.com/api/services?activeOnly=true';
 
     document.addEventListener('DOMContentLoaded', async function () {
         var servicesGrid = document.getElementById('servicesGrid');

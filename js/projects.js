@@ -4,7 +4,7 @@
    and applies category filtering.
    ═══════════════════════════════════════════ */
 
-const PROJECTS_API = 'http://localhost:5000';
+const PROJECTS_API = 'https://prapti-associates.onrender.com';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const grid = document.getElementById('projectGrid');

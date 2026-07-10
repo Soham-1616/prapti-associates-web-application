@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    var CONTACT_API = 'http://localhost:5000/api/contact-details';
+    var CONTACT_API = 'https://prapti-associates.onrender.com/api/contact-details';
 
     document.addEventListener('DOMContentLoaded', async function () {
         var addressEl = document.getElementById('contactAddress');
