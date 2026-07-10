@@ -1,0 +1,97 @@
+[
+    {
+        "id": 1,
+        "name": "Sahyadri: Office",
+        "slug": "sahyadri-office",
+        "category": "commercial",
+        "clientName": "Sahyadri Developers Pvt. Ltd.",
+        "location": "Pune, Maharashtra",
+        "year": "2023",
+        "area": "5,500 sq.ft",
+        "status": "Completed",
+        "description": "Sahyadri Office is a modern commercial workspace designed to enhance productivity and provide a professional business environment. The project focuses on clean interiors, efficient space planning, and contemporary design elements, making it suitable for corporate operations and client interactions.",
+        "description2": "The office space features premium flooring, modular workstation layouts, well-lit conference rooms, and a welcoming reception area. Every design choice was made to create a productive and aesthetically pleasing work environment that reflects professionalism.",
+        "heroImage": "images/projects/sahyadri-office/1.png",
+        "galleryImages": [
+            "images/projects/sahyadri-office/gallery-1.png",
+            "images/projects/sahyadri-office/gallery-2.png",
+            "images/projects/sahyadri-office/gallery-3.png"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Swaraj",
+        "slug": "swaraj",
+        "category": "residential",
+        "clientName": "Mr. Soham Patil",
+        "location": "Sangli, Maharashtra",
+        "year": "2023",
+        "area": "3,200 sq.ft",
+        "status": "Completed",
+        "description": "Swaraj is a modern residential villa project designed with a focus on contemporary architecture and functional living spaces. The project emphasizes natural lighting, ventilation, and aesthetic exterior design. It reflects a perfect balance between luxury and comfort for urban living.",
+        "description2": "The villa features stone cladding accent walls, glass railing balconies, wooden louver detailing, and a thoughtfully planned layout that maximizes space utilization. Every element was crafted to deliver a premium living experience while maintaining structural integrity and modern aesthetics.",
+        "heroImage": "images/projects/swaraj/1.png",
+        "galleryImages": [
+            "images/projects/swaraj/1.png",
+            "images/projects/swaraj/2.png",
+            "images/projects/swaraj/3.png"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Vitthal Rukmini Temple",
+        "slug": "vitthal-rukmini",
+        "category": "institutional",
+        "clientName": "Vitthal Rukmini Trust",
+        "location": "Pandharpur, Maharashtra",
+        "year": "2022",
+        "area": "6,500 sq.ft",
+        "status": "Completed",
+        "description": "Vitthal Rukmini Temple is an institutional project designed to create a peaceful and spiritually uplifting environment. The architecture blends traditional temple elements with modern construction techniques, ensuring durability while maintaining cultural significance. The design focuses on open spaces, natural airflow, and a serene ambiance for visitors.",
+        "description2": "The temple features intricately designed stone work, spacious prayer halls, well-planned pathways for devotees, and landscaped surroundings. Traditional materials were combined with modern structural engineering to create a timeless space that serves the community for generations.",
+        "heroImage": "images/projects/vitthal-rukmini/1.png",
+        "galleryImages": [
+            "images/projects/vitthal-rukmini/1.png",
+            "images/projects/vitthal-rukmini/2.png",
+            "images/projects/vitthal-rukmini/3.png"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Nilaya",
+        "slug": "nilaya",
+        "category": "residential",
+        "clientName": "Mrs. Kavita Deshmukh",
+        "location": "Pune, Maharashtra",
+        "year": "2024",
+        "area": "3,800 sq.ft",
+        "status": "Ongoing",
+        "description": "Nilaya is a premium residential project designed to provide a spacious and elegant living experience. The design integrates modern materials with traditional elements, ensuring durability and visual appeal. The project focuses on efficient space utilization and a comfortable lifestyle environment.",
+        "description2": "The residence features clean geometric lines, ambient exterior lighting, premium wall cladding, and expansive balconies offering panoramic views. Every aspect of the design prioritizes both luxury and practical everyday living.",
+        "heroImage": "images/projects/nilaya/1.png",
+        "galleryImages": [
+            "images/projects/nilaya/1.png",
+            "images/projects/nilaya/2.png",
+            "images/projects/nilaya/3.png"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Dr. Bhosale Office",
+        "slug": "bhosale-office",
+        "category": "commercial",
+        "clientName": "Dr. Bhosale",
+        "location": "Solapur, Maharashtra",
+        "year": "2024",
+        "area": "2,800 sq.ft",
+        "status": "Completed",
+        "description": "Dr. Bhosale Office is a well-planned commercial clinic space designed to provide a comfortable and efficient environment for both patients and medical professionals. The design emphasizes cleanliness, proper lighting, and functional layout to ensure smooth workflow and a welcoming atmosphere.",
+        "description2": "The clinic features hygienic wall and floor finishes, dedicated consultation rooms, a well-organized reception and waiting area, and ample natural light. The design ensures a calming environment for patients while maintaining operational efficiency for the medical team.",
+        "heroImage": "images/projects/bhosale-office/1.png",
+        "galleryImages": [
+            "images/projects/bhosale-office/1.png",
+            "images/projects/bhosale-office/2.png",
+            "images/projects/bhosale-office/3.png"
+        ]
+    }
+]

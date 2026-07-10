@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Residential Construction",
+        "description": "We design and build modern, comfortable homes — from luxury villas to apartment complexes — using premium materials and sustainable practices.",
+        "icon": "bi-house-door-fill",
+        "displayOrder": 1,
+        "status": "active"
+    },
+    {
+        "id": 2,
+        "name": "Interior",
+        "description": "Interior Construction",
+        "icon": "bi-tools",
+        "displayOrder": 2,
+        "status": "active"
+    }
+]

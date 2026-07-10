@@ -126,6 +126,16 @@
     padding: 16px 12px;
 }
 
+.sidebar-section-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 20px 0 8px 16px;
+    text-transform: uppercase;
+}
+
 .sidebar-link {
     display: flex;
     align-items: center;
@@ -413,4 +423,116 @@
     .dash-card {
         padding: 16px;
     }
+}
+
+/* ── Project Management ── */
+.project-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #E2E8F0;
+}
+
+.project-thumb-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: #F1F5F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94A3B8;
+    font-size: 1.2rem;
+    border: 1px solid #E2E8F0;
+}
+
+.img-preview-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.img-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #E2E8F0;
+    transition: border-color 0.2s ease;
+}
+
+.img-thumb:hover {
+    border-color: #FBBF24;
+}
+
+#projectModal .form-label {
+    font-size: 0.85rem;
+    color: #334155;
+}
+
+#projectModal .form-control,
+#projectModal .form-select {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+}
+
+#projectModal .form-control:focus,
+#projectModal .form-select:focus {
+    border-color: #FBBF24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
+}
+
+.btn-gold {
+    background: #FBBF24 !important;
+    color: #0F172A !important;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.admin-body .btn-gold:hover {
+    background: #E5A91F !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+/* ── Modal Scroll Fix ── */
+#projectModal .modal-dialog {
+    max-height: 90vh;
+}
+
+#projectModal .modal-content {
+    max-height: 90vh;
+}
+
+#projectModal .modal-body {
+    overflow-y: auto;
+    max-height: calc(90vh - 130px);
+}
+
+.admin-body .modal {
+    z-index: 1060;
+}
+
+.admin-body .modal-backdrop {
+    z-index: 1050;
+}
+
+/* ── Custom Tab Styling Fix for conflicts ── */
+.admin-body .nav-tabs .nav-link {
+    color: #475569 !important;
+}
+
+.admin-body .nav-tabs .nav-link.active {
+    color: #0F172A !important;
+    font-weight: 600;
+}
+
+.admin-body .nav-tabs .nav-link.disabled {
+    color: #94A3B8 !important;
+    opacity: 0.6;
 }

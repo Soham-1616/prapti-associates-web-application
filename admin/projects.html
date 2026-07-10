@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Projects — Prapti Associates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+</head>
+
+<body class="admin-body">
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="sidebar-brand">
+                <i class="bi bi-building"></i>
+                <span>Prapti <span class="text-gold">Admin</span></span>
+            </a>
+            <button class="sidebar-close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <nav class="sidebar-nav">
+            <span class="sidebar-section-label">MAIN</span>
+            <a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a>
+            <span class="sidebar-section-label">CONTENT MANAGEMENT</span>
+            <a href="projects.html" class="sidebar-link active"><i class="bi bi-grid"></i><span>Projects</span></a>
+            <a href="connections.html" class="sidebar-link"><i class="bi bi-people"></i><span>Team Members</span></a>
+            <a href="services.html" class="sidebar-link"><i class="bi bi-tools"></i><span>Services</span></a>
+            <a href="website-content.html" class="sidebar-link"><i class="bi bi-file-earmark-richtext"></i><span>Website Content</span></a>
+            <span class="sidebar-section-label">SYSTEM</span>
+            <a href="my-account.html" class="sidebar-link"><i class="bi bi-person-gear"></i><span>My Account</span></a>
+            <a href="#" id="logoutBtn" class="sidebar-link"><i class="bi bi-box-arrow-left"></i><span>Logout</span></a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+            <h4 class="admin-page-title">Manage Projects</h4>
+            <div class="admin-user">
+                <span>Admin</span>
+                <div class="admin-avatar"><i class="bi bi-person-circle"></i></div>
+            </div>
+        </header>
+
+        <!-- Projects Content -->
+        <div class="admin-content">
+            <!-- Header Row -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0"><i class="bi bi-grid me-2 text-gold"></i>All Projects</h5>
+                <button class="btn btn-gold" id="addProjectBtn">
+                    <i class="bi bi-plus-lg me-1"></i>Add Project
+                </button>
+            </div>
+
+            <!-- Projects Table -->
+            <div class="admin-table-card">
+                <div class="table-responsive">
+                    <table class="table admin-table" id="projectsTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Year</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsBody">
+                            <tr>
+                                <td colspan="7" class="text-center py-4 text-muted">
+                                    <i class="bi bi-hourglass-split me-2"></i>Loading projects...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ADD/EDIT PROJECT MODAL -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectModalLabel">Add New Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="projectForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" id="projectId" />
+                        <div class="row g-3">
+                            <!-- Name -->
+                            <div class="col-md-8">
+                                <label for="projectName" class="form-label">Project Name *</label>
+                                <input type="text" class="form-control" id="projectName" required />
+                            </div>
+                            <!-- Category -->
+                            <div class="col-md-4">
+                                <label for="projectCategory" class="form-label">Category *</label>
+                                <select class="form-select" id="projectCategory" required>
+                                    <option value="">Select...</option>
+                                    <option value="residential">Residential</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="institutional">Institutional</option>
+                                </select>
+                            </div>
+                            <!-- Client -->
+                            <div class="col-md-6">
+                                <label for="projectClient" class="form-label">Client Name</label>
+                                <input type="text" class="form-control" id="projectClient" />
+                            </div>
+                            <!-- Location -->
+                            <div class="col-md-6">
+                                <label for="projectLocation" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="projectLocation" />
+                            </div>
+                            <!-- Year -->
+                            <div class="col-md-4">
+                                <label for="projectYear" class="form-label">Year</label>
+                                <input type="text" class="form-control" id="projectYear" />
+                            </div>
+                            <!-- Area -->
+                            <div class="col-md-4">
+                                <label for="projectArea" class="form-label">Area</label>
+                                <input type="text" class="form-control" id="projectArea" placeholder="e.g. 3,500 sq.ft" />
+                            </div>
+                            <!-- Status -->
+                            <div class="col-md-4">
+                                <label for="projectStatus" class="form-label">Status</label>
+                                <select class="form-select" id="projectStatus">
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <!-- Description -->
+                            <div class="col-12">
+                                <label for="projectDesc" class="form-label">Description</label>
+                                <textarea class="form-control" id="projectDesc" rows="3"></textarea>
+                            </div>
+                            <!-- Description 2 -->
+                            <div class="col-12">
+                                <label for="projectDesc2" class="form-label">Additional Description</label>
+                                <textarea class="form-control" id="projectDesc2" rows="3"></textarea>
+                            </div>
+                            <!-- Hero Image -->
+                            <div class="col-md-6">
+                                <label for="projectHero" class="form-label">Hero Image</label>
+                                <input type="file" class="form-control" id="projectHero" accept="image/*" />
+                                <div class="img-preview-row mt-2" id="heroPreview"></div>
+                            </div>
+                            <!-- Gallery Images -->
+                            <div class="col-md-6">
+                                <label for="projectGallery" class="form-label">Gallery Images (max 10)</label>
+                                <input type="file" class="form-control" id="projectGallery" accept="image/*" multiple />
+                                <div class="img-preview-row mt-2" id="galleryPreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gold" id="saveProjectBtn">
+                            <i class="bi bi-check-lg me-1"></i>Save Project
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- DELETE CONFIRM MODAL -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <i class="bi bi-exclamation-triangle text-danger" style="font-size: 2.5rem;"></i>
+                    <h5 class="mt-3">Delete Project?</h5>
+                    <p class="text-muted small">This action cannot be undone.</p>
+                    <input type="hidden" id="deleteProjectId" />
+                    <div class="d-flex gap-2 justify-content-center mt-3">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger" id="confirmDeleteBtn">
+                            <i class="bi bi-trash me-1"></i>Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+        <div id="adminToast" class="toast align-items-center text-bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">Action completed.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/admin-projects.js"></script>
+</body>
+
+</html>

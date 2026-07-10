@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Content — Prapti Associates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+</head>
+
+<body class="admin-body">
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="sidebar-brand">
+                <i class="bi bi-building"></i>
+                <span>Prapti <span class="text-gold">Admin</span></span>
+            </a>
+            <button class="sidebar-close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <nav class="sidebar-nav">
+            <span class="sidebar-section-label">MAIN</span>
+            <a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a>
+            <span class="sidebar-section-label">CONTENT MANAGEMENT</span>
+            <a href="projects.html" class="sidebar-link"><i class="bi bi-grid"></i><span>Projects</span></a>
+            <a href="connections.html" class="sidebar-link"><i class="bi bi-people"></i><span>Team Members</span></a>
+            <a href="services.html" class="sidebar-link"><i class="bi bi-tools"></i><span>Services</span></a>
+            <a href="website-content.html" class="sidebar-link active"><i class="bi bi-file-earmark-richtext"></i><span>Website Content</span></a>
+            <span class="sidebar-section-label">SYSTEM</span>
+            <a href="my-account.html" class="sidebar-link"><i class="bi bi-person-gear"></i><span>My Account</span></a>
+            <a href="#" id="logoutBtn" class="sidebar-link"><i class="bi bi-box-arrow-left"></i><span>Logout</span></a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+            <h4 class="admin-page-title">Website Content</h4>
+            <div class="admin-user">
+                <span>Admin</span>
+                <div class="admin-avatar"><i class="bi bi-person-circle"></i></div>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- Page Tabs -->
+            <ul class="nav nav-tabs mb-4" id="contentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="homepage-tab" data-bs-toggle="tab"
+                        data-bs-target="#homepagePane" type="button" role="tab">
+                        <i class="bi bi-house-door me-1"></i>Homepage
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="about-tab" data-bs-toggle="tab"
+                        data-bs-target="#aboutPane" type="button" role="tab">
+                        <i class="bi bi-info-circle me-1"></i>About
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                        data-bs-target="#contactPane" type="button" role="tab">
+                        <i class="bi bi-envelope me-1"></i>Contact
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Panes -->
+            <div class="tab-content" id="contentTabContent">
+
+                <!-- HOMEPAGE TAB -->
+                <div class="tab-pane fade show active" id="homepagePane" role="tabpanel">
+                    <form id="homepageForm">
+
+                        <!-- Hero Section -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-stars me-2 text-gold"></i>Hero Section</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label for="heroBadge" class="form-label fw-semibold">Badge Text</label>
+                                        <input type="text" class="form-control" id="heroBadge" placeholder="e.g. Award Winning Consultancy" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="heroHeadingLine1" class="form-label fw-semibold">Heading Line 1 *</label>
+                                        <input type="text" class="form-control" id="heroHeadingLine1" required placeholder="e.g. We Build Something" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="heroHeadingLine2" class="form-label fw-semibold">Heading Line 2 (Gold Text) *</label>
+                                        <input type="text" class="form-control" id="heroHeadingLine2" required placeholder="e.g. New and Consistent." />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="heroDescription" class="form-label fw-semibold">Description *</label>
+                                        <textarea class="form-control" id="heroDescription" rows="3" required placeholder="Enter the hero section description..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-link-45deg me-2 text-gold"></i>Hero Buttons</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="primaryBtnText" class="form-label fw-semibold">Primary Button Text</label>
+                                        <input type="text" class="form-control" id="primaryBtnText" placeholder="e.g. Get Started" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="primaryBtnLink" class="form-label fw-semibold">Primary Button Link</label>
+                                        <input type="text" class="form-control" id="primaryBtnLink" placeholder="e.g. appointment.html" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="secondaryBtnText" class="form-label fw-semibold">Secondary Button Text</label>
+                                        <input type="text" class="form-control" id="secondaryBtnText" placeholder="e.g. Our Services" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="secondaryBtnLink" class="form-label fw-semibold">Secondary Button Link</label>
+                                        <input type="text" class="form-control" id="secondaryBtnLink" placeholder="e.g. services.html" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statistics -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-bar-chart-fill me-2 text-gold"></i>Hero Statistics</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="stat1Number" class="form-label fw-semibold">Stat 1 Number</label>
+                                        <input type="text" class="form-control" id="stat1Number" placeholder="e.g. 150+" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="stat1Label" class="form-label fw-semibold">Stat 1 Label</label>
+                                        <input type="text" class="form-control" id="stat1Label" placeholder="e.g. Projects Done" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="stat2Number" class="form-label fw-semibold">Stat 2 Number</label>
+                                        <input type="text" class="form-control" id="stat2Number" placeholder="e.g. 12+" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="stat2Label" class="form-label fw-semibold">Stat 2 Label</label>
+                                        <input type="text" class="form-control" id="stat2Label" placeholder="e.g. Years Experience" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="stat3Number" class="form-label fw-semibold">Stat 3 Number</label>
+                                        <input type="text" class="form-control" id="stat3Number" placeholder="e.g. 98%" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="stat3Label" class="form-label fw-semibold">Stat 3 Label</label>
+                                        <input type="text" class="form-control" id="stat3Label" placeholder="e.g. Client Satisfaction" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-gold btn-lg" id="saveHomepageBtn">
+                                <i class="bi bi-check-lg me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ABOUT TAB -->
+                <div class="tab-pane fade" id="aboutPane" role="tabpanel">
+                    <form id="aboutForm" enctype="multipart/form-data">
+                        
+                        <!-- Company Story -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-book-fill me-2 text-gold"></i>Company Story</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label for="introTitle" class="form-label fw-semibold">Introduction Title *</label>
+                                        <input type="text" class="form-control" id="introTitle" required placeholder="e.g. Building Dreams Since 2012" />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="introDesc" class="form-label fw-semibold">Company Description / Paragraphs *</label>
+                                        <textarea class="form-control" id="introDesc" rows="6" required placeholder="Enter description paragraphs. Separate paragraphs with double newlines..."></textarea>
+                                        <div class="form-text">Press Enter twice to separate paragraphs.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statistics and Image -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-image me-2 text-gold"></i>Company Statistics & Photo</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="experienceYears" class="form-label fw-semibold">Experience Years</label>
+                                        <input type="text" class="form-control" id="experienceYears" placeholder="e.g. 12+" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="experienceLabel" class="form-label fw-semibold">Experience Label</label>
+                                        <input type="text" class="form-control" id="experienceLabel" placeholder="e.g. Years of Excellence" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="aboutImage" class="form-label fw-semibold">Company Photo</label>
+                                        <input type="file" class="form-control" id="aboutImage" accept="image/*" />
+                                        <div class="form-text">Supported formats: JPG, JPEG, PNG, WEBP. Max size 5MB.</div>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <label class="form-label fw-semibold d-block">Current Photo Preview</label>
+                                        <img id="aboutImagePreview" src="../images/about-construction.png" alt="Company Photo Preview" class="img-thumbnail" style="max-height: 140px; object-fit: cover;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mission, Vision & Values -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-compass-fill me-2 text-gold"></i>Mission, Vision & Values</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label for="missionText" class="form-label fw-semibold">Our Mission *</label>
+                                        <textarea class="form-control" id="missionText" rows="3" required placeholder="Enter mission statement..."></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="visionText" class="form-label fw-semibold">Our Vision *</label>
+                                        <textarea class="form-control" id="visionText" rows="3" required placeholder="Enter vision statement..."></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="valuesText" class="form-label fw-semibold">Our Values</label>
+                                        <textarea class="form-control" id="valuesText" rows="3" placeholder="Enter values statement..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-trophy-fill me-2 text-gold"></i>Certifications & Recognition (Achievements)</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label for="achievementsHeading" class="form-label fw-semibold">Section Heading</label>
+                                        <input type="text" class="form-control" id="achievementsHeading" placeholder="e.g. Certifications & Recognition" />
+                                    </div>
+                                    
+                                    <!-- Achievement 1 -->
+                                    <div class="col-md-6">
+                                        <label for="ach1Text" class="form-label fw-semibold">Achievement 1 Text *</label>
+                                        <input type="text" class="form-control" id="ach1Text" required placeholder="e.g. ISO 9001:2015" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ach1Icon" class="form-label fw-semibold">Achievement 1 Icon Class *</label>
+                                        <input type="text" class="form-control" id="ach1Icon" required placeholder="e.g. bi-patch-check-fill" />
+                                    </div>
+                                    
+                                    <!-- Achievement 2 -->
+                                    <div class="col-md-6">
+                                        <label for="ach2Text" class="form-label fw-semibold">Achievement 2 Text *</label>
+                                        <input type="text" class="form-control" id="ach2Text" required placeholder="e.g. Best Consultancy 2023" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ach2Icon" class="form-label fw-semibold">Achievement 2 Icon Class *</label>
+                                        <input type="text" class="form-control" id="ach2Icon" required placeholder="e.g. bi-award-fill" />
+                                    </div>
+                                    
+                                    <!-- Achievement 3 -->
+                                    <div class="col-md-6">
+                                        <label for="ach3Text" class="form-label fw-semibold">Achievement 3 Text *</label>
+                                        <input type="text" class="form-control" id="ach3Text" required placeholder="e.g. RERA Registered" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ach3Icon" class="form-label fw-semibold">Achievement 3 Icon Class *</label>
+                                        <input type="text" class="form-control" id="ach3Icon" required placeholder="e.g. bi-shield-check" />
+                                    </div>
+                                    
+                                    <!-- Achievement 4 -->
+                                    <div class="col-md-6">
+                                        <label for="ach4Text" class="form-label fw-semibold">Achievement 4 Text *</label>
+                                        <input type="text" class="form-control" id="ach4Text" required placeholder="e.g. IIA Member" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ach4Icon" class="form-label fw-semibold">Achievement 4 Icon Class *</label>
+                                        <input type="text" class="form-control" id="ach4Icon" required placeholder="e.g. bi-building-check" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-gold btn-lg" id="saveAboutBtn">
+                                <i class="bi bi-check-lg me-1"></i>Save About Us
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- CONTACT TAB -->
+                <div class="tab-pane fade" id="contactPane" role="tabpanel">
+                    <form id="contactDetailsForm">
+
+                        <!-- Main Contact Cards -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-telephone-fill me-2 text-gold"></i>Contact Cards Info</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label for="address" class="form-label fw-semibold">Office Address *</label>
+                                        <textarea class="form-control" id="address" rows="3" required placeholder="Enter office address..."></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="primaryPhone" class="form-label fw-semibold">Primary Phone Number *</label>
+                                        <input type="text" class="form-control" id="primaryPhone" required placeholder="e.g. +91 97639 96291" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="primaryEmail" class="form-label fw-semibold">Primary Email Address *</label>
+                                        <input type="email" class="form-control" id="primaryEmail" required placeholder="e.g. praptiassociates555@gmail.com" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="secondaryEmail" class="form-label fw-semibold">Secondary Email Address</label>
+                                        <input type="email" class="form-control" id="secondaryEmail" placeholder="e.g. umeshkamble008@gmail.com" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="googleMapsUrl" class="form-label fw-semibold">Google Maps Embed URL *</label>
+                                        <input type="url" class="form-control" id="googleMapsUrl" required placeholder="Enter maps src URL..." />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-share-fill me-2 text-gold"></i>Social Media Links</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="facebookUrl" class="form-label fw-semibold">Facebook URL</label>
+                                        <input type="text" class="form-control" id="facebookUrl" placeholder="e.g. https://facebook.com/..." />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="instagramUrl" class="form-label fw-semibold">Instagram URL</label>
+                                        <input type="text" class="form-control" id="instagramUrl" placeholder="e.g. https://instagram.com/..." />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="linkedinUrl" class="form-label fw-semibold">LinkedIn URL</label>
+                                        <input type="text" class="form-control" id="linkedinUrl" placeholder="e.g. https://linkedin.com/..." />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="twitterUrl" class="form-label fw-semibold">Twitter/X URL</label>
+                                        <input type="text" class="form-control" id="twitterUrl" placeholder="e.g. https://twitter.com/..." />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="whatsappUrl" class="form-label fw-semibold">WhatsApp URL / Number</label>
+                                        <input type="text" class="form-control" id="whatsappUrl" placeholder="e.g. https://wa.me/..." />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Availability & Office Hours -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white border-bottom">
+                                <h6 class="fw-bold mb-0"><i class="bi bi-clock-fill me-2 text-gold"></i>Office Hours</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="weekdayHours" class="form-label fw-semibold">Monday – Friday Hours</label>
+                                        <input type="text" class="form-control" id="weekdayHours" placeholder="e.g. 9:00 AM – 7:00 PM" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="saturdayHours" class="form-label fw-semibold">Saturday Hours</label>
+                                        <input type="text" class="form-control" id="saturdayHours" placeholder="e.g. 10:00 AM – 4:00 PM" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="sundayHours" class="form-label fw-semibold">Sunday Hours</label>
+                                        <input type="text" class="form-control" id="sundayHours" placeholder="e.g. Closed" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-gold btn-lg" id="saveContactBtn">
+                                <i class="bi bi-check-lg me-1"></i>Save Contact Info
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+        <div id="adminToast" class="toast align-items-center text-bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">Action completed.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/admin-homepage.js"></script>
+    <script src="../js/admin-about.js"></script>
+    <script src="../js/admin-contact.js"></script>
+</body>
+
+</html>

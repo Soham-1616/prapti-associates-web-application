@@ -1,0 +1,18 @@
+{
+    "cleanUrls": false,
+    "rewrites": [
+        { "source": "/admin/login", "destination": "/admin/login.html" },
+        { "source": "/admin/dashboard", "destination": "/admin/dashboard.html" },
+        { "source": "/admin/projects", "destination": "/admin/projects.html" },
+        { "source": "/admin/connections", "destination": "/admin/connections.html" },
+        { "source": "/projects", "destination": "/projects.html" },
+        { "source": "/project-detail", "destination": "/project-detail.html" },
+        { "source": "/about", "destination": "/about.html" },
+        { "source": "/services", "destination": "/services.html" },
+        { "source": "/contact", "destination": "/contact.html" },
+        { "source": "/appointment", "destination": "/appointment.html" },
+        { "source": "/connections", "destination": "/connections.html" },
+        { "source": "/consultancy", "destination": "/consultancy.html" },
+        { "source": "/feedback", "destination": "/feedback.html" }
+    ]
+}

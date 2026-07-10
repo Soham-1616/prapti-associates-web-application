@@ -71,68 +71,14 @@
         </div>
     </section>
 
-    <!-- SERVICES GRID (6 Cards) -->
+    <!-- SERVICES GRID (Dynamic) -->
     <section class="section-padding">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-animate="fade-up">
-                    <div class="service-card-full">
-                        <div class="service-icon-lg"><i class="bi bi-house-door-fill"></i></div>
-                        <h4>Residential Construction</h4>
-                        <p>We design and build modern, comfortable homes — from luxury villas to apartment complexes —
-                            using premium materials and sustainable practices.</p>
-                        <a href="consultancy.html" class="btn btn-service">Request Consultation <i
-                                class="bi bi-arrow-right-circle"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-animate="fade-up" data-delay="100">
-                    <div class="service-card-full accent">
-                        <div class="service-icon-lg"><i class="bi bi-building"></i></div>
-                        <h4>Commercial Construction</h4>
-                        <p>From office towers to retail complexes, we deliver commercial projects that optimize space,
-                            functionality, and modern architectural design.</p>
-                        <a href="consultancy.html" class="btn btn-service">Request Consultation <i
-                                class="bi bi-arrow-right-circle"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-animate="fade-up" data-delay="200">
-                    <div class="service-card-full">
-                        <div class="service-icon-lg"><i class="bi bi-palette-fill"></i></div>
-                        <h4>Interior Design</h4>
-                        <p>Transform any space with our expert interior design services. We blend aesthetics with
-                            functionality to create stunning, livable interiors.</p>
-                        <a href="consultancy.html" class="btn btn-service">Request Consultation <i
-                                class="bi bi-arrow-right-circle"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-animate="fade-up">
-                    <div class="service-card-full">
-                        <div class="service-icon-lg"><i class="bi bi-tools"></i></div>
-                        <h4>Structural Repair</h4>
-                        <p>Our structural specialists diagnose and repair building issues using advanced techniques,
-                            ensuring safety, compliance, and long-term durability.</p>
-                        <a href="consultancy.html" class="btn btn-service">Request Consultation <i
-                                class="bi bi-arrow-right-circle"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-animate="fade-up" data-delay="100">
-                    <div class="service-card-full accent">
-                        <div class="service-icon-lg"><i class="bi bi-clipboard2-check-fill"></i></div>
-                        <h4>Project Management (PMC)</h4>
-                        <p>Our PMC services ensure your project is delivered on time, within budget, and to the highest
-                            quality standards — from planning to handover.</p>
-                        <a href="consultancy.html" class="btn btn-service">Request Consultation <i
-                                class="bi bi-arrow-right-circle"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-animate="fade-up" data-delay="200">
-                    <div class="service-card-full">
-                        <div class="service-icon-lg"><i class="bi bi-hammer"></i></div>
-                        <h4>Renovation & Remodeling</h4>
-                        <p>Breathe new life into existing structures with our renovation services. We modernize,
-                            restore, and upgrade buildings to meet today's standards.</p>
-                        <a href="consultancy.html" class="btn btn-service">Request Consultation <i
-                                class="bi bi-arrow-right-circle"></i></a>
+            <div class="row g-4" id="servicesGrid">
+                <!-- Services will be loaded here dynamically via JS -->
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-gold" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
             </div>
@@ -291,6 +237,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/services.js"></script>
 </body>
 
 </html>

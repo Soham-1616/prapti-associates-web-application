@@ -24,25 +24,25 @@ const storage = multer.diskStorage({
     },
 });
 
-// File filter — images only (for feedback photo)
+// File filter — images only (for feedback photo, projects, and connections)
 const imageFilter = (req, file, cb) => {
-    const allowed = ['.jpg', '.jpeg', '.png'];
+    const allowed = ['.jpg', '.jpeg', '.png', '.webp'];
     const ext = path.extname(file.originalname).toLowerCase();
     if (allowed.includes(ext)) {
         cb(null, true);
     } else {
-        cb(new Error('Only JPG and PNG images are allowed.'), false);
+        cb(new Error('Only JPG, JPEG, PNG, and WEBP images are allowed.'), false);
     }
 };
 
 // File filter — documents + images (for consultancy)
 const documentFilter = (req, file, cb) => {
-    const allowed = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'];
+    const allowed = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.webp'];
     const ext = path.extname(file.originalname).toLowerCase();
     if (allowed.includes(ext)) {
         cb(null, true);
     } else {
-        cb(new Error('Only PDF, DOC, DOCX, JPG, and PNG files are allowed.'), false);
+        cb(new Error('Only PDF, DOC, DOCX, JPG, PNG, and WEBP files are allowed.'), false);
     }
 };
 
@@ -59,4 +59,34 @@ const uploadConsultancyDocs = multer({
     limits: { fileSize: 10 * 1024 * 1024 }, // 10MB per file
 }).array('documents', 5); // max 5 files
 
-module.exports = { uploadFeedbackPhoto, uploadConsultancyDocs };
+// Project images upload (hero + gallery)
+const uploadProjectImages = multer({
+    storage,
+    fileFilter: imageFilter,
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10MB per file
+}).fields([
+    { name: 'heroImage', maxCount: 1 },
+    { name: 'galleryImages', maxCount: 10 },
+]);
+
+// Connection profile image upload (single photo)
+const uploadConnectionPhoto = multer({
+    storage,
+    fileFilter: imageFilter,
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+}).single('photo');
+
+// About section image upload (single photo)
+const uploadAboutPhoto = multer({
+    storage,
+    fileFilter: imageFilter,
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+}).single('aboutImage');
+
+module.exports = { 
+    uploadFeedbackPhoto, 
+    uploadConsultancyDocs, 
+    uploadProjectImages,
+    uploadConnectionPhoto,
+    uploadAboutPhoto
+};

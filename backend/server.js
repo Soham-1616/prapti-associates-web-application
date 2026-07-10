@@ -8,9 +8,17 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const appointmentRoutes = require('./routes/appointmentRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
 const consultancyRoutes = require('./routes/consultancyRoutes');
+const authRoutes = require('./routes/authRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const connectionRoutes = require('./routes/connectionRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+const homepageRoutes = require('./routes/homepageRoutes');
+const aboutRoutes = require('./routes/aboutRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,10 +27,20 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());                // Allow cross-origin requests from frontend
 app.use(express.json());        // Parse JSON request bodies
 
+// ── Serve project images from frontend directory ──
+app.use('/images', express.static(path.join(__dirname, '..', 'images')));
+
 // ── Routes ──
 app.use('/api', appointmentRoutes);
 app.use('/api', feedbackRoutes);
 app.use('/api', consultancyRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/connections', connectionRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/homepage', homepageRoutes);
+app.use('/api/about', aboutRoutes);
+app.use('/api/contact-details', contactRoutes);
 
 // ── Health Check ──
 app.get('/', (req, res) => {
@@ -34,6 +52,14 @@ app.get('/', (req, res) => {
             contactForm: 'POST /api/contact',
             feedback: 'POST /api/feedback',
             consultancy: 'POST /api/consultancy',
+            adminLogin: 'POST /api/auth/login',
+            adminVerify: 'GET /api/auth/verify',
+            projects: 'GET /api/projects',
+            projectCrud: 'POST|PUT|DELETE /api/projects/:id',
+            connections: 'GET /api/connections',
+            connectionsCrud: 'POST|PUT|DELETE /api/connections/:id',
+            services: 'GET /api/services',
+            servicesCrud: 'POST|PUT|DELETE /api/services/:id'
         },
     });
 });
@@ -63,5 +89,13 @@ app.listen(PORT, () => {
     console.log(`     POST /api/appointments`);
     console.log(`     POST /api/contact`);
     console.log(`     POST /api/feedback`);
-    console.log(`     POST /api/consultancy\n`);
+    console.log(`     POST /api/consultancy`);
+    console.log(`     POST /api/auth/login`);
+    console.log(`     GET  /api/auth/verify`);
+    console.log(`     GET  /api/projects`);
+    console.log(`     CRUD /api/projects/:id`);
+    console.log(`     GET  /api/connections`);
+    console.log(`     CRUD /api/connections/:id`);
+    console.log(`     GET  /api/services`);
+    console.log(`     CRUD /api/services/:id\n`);
 });

@@ -1,0 +1,145 @@
+[
+    {
+        "id": 1,
+        "name": "Mr. Pramod Jadhav",
+        "designation": "Civil Engineer",
+        "category": "engineer",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Pramod+Jadhav&background=0D6EFD&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 2,
+        "name": "Mr. Vishal Bhosale",
+        "designation": "Civil Engineer",
+        "category": "engineer",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Vishal+Bhosale&background=198754&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 3,
+        "name": "Mr. Umesh Kamble",
+        "designation": "Civil Engineer",
+        "category": "engineer",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Umesh+Kamble&background=6F42C1&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 4,
+        "name": "Mr. Pramod Parik",
+        "designation": "Architect",
+        "category": "architect",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Pramod+Parik&background=DC3545&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 5,
+        "name": "Mr. Abhishek Vora",
+        "designation": "Architect",
+        "category": "architect",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Abhishek+Vora&background=FD7E14&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 6,
+        "name": "Mr. Prakash Jadhav",
+        "designation": "Architect",
+        "category": "architect",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Prakash+Jadhav&background=20C997&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 7,
+        "name": "Mr. Urmi Bhave",
+        "designation": "Architect",
+        "category": "architect",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Urmi+Bhave&background=D63384&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 8,
+        "name": "Mr. Pandurang Kore",
+        "designation": "Centering",
+        "category": "coworker",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Pandurang+Kore&background=6610F2&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 9,
+        "name": "Mr. Sanjay Nandeshwar",
+        "designation": "Brick Worker",
+        "category": "coworker",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Sanjay+Nandeshwar&background=0DCAF0&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 10,
+        "name": "Mr. Suresh Jadhav",
+        "designation": "Plaster Work",
+        "category": "coworker",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Suresh+Jadhav&background=E85D04&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 11,
+        "name": "Mr. Mahadev Mane",
+        "designation": "Labour Supplier",
+        "category": "coworker",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Mahadev+Mane&background=2D6A4F&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 12,
+        "name": "Mr. Kumbharam Sutar",
+        "designation": "Carpenter",
+        "category": "coworker",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=Kumbharam+Sutar&background=7B2D26&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    },
+    {
+        "id": 13,
+        "name": "Mr. Lalit Kumavat & Mr. Sangappa Mali",
+        "designation": "Tile Fitter",
+        "category": "coworker",
+        "customCategory": "",
+        "photo": "https://ui-avatars.com/api/?name=L+K+%26+S+M&background=3D5A80&color=fff&size=200&font-size=0.4&bold=true",
+        "phone": "",
+        "email": "",
+        "linkedin": ""
+    }
+]
