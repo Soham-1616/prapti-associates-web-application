@@ -132,7 +132,11 @@ exports.submitConsultancy = async (req, res) => {
         }
 
         // ── Send email ──
-        await transporter.sendMail(mailOptions);
+        try {
+            await transporter.sendMail(mailOptions);
+        } catch (mailError) {
+            console.error('⚠️ Nodemailer failed to send consultancy email notification (likely SMTP blocked by Render free tier):', mailError.message);
+        }
 
         // Clean up uploaded files after sending
         if (documents && documents.length > 0) {

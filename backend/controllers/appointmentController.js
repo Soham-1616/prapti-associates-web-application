@@ -150,13 +150,17 @@ exports.bookAppointment = async (req, res) => {
         `;
 
         // ── Send email ──
-        await transporter.sendMail({
-            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
-            to: process.env.ADMIN_EMAIL,
-            subject: `New Appointment: ${fullName} — ${serviceType || 'General'}`,
-            html: emailHTML,
-            replyTo: email,
-        });
+        try {
+            await transporter.sendMail({
+                from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+                to: process.env.ADMIN_EMAIL,
+                subject: `New Appointment: ${fullName} — ${serviceType || 'General'}`,
+                html: emailHTML,
+                replyTo: email,
+            });
+        } catch (mailError) {
+            console.error('⚠️ Nodemailer failed to send booking email notification (likely SMTP blocked by Render free tier):', mailError.message);
+        }
 
         // ── Success response ──
         return res.status(201).json({
@@ -435,13 +439,17 @@ exports.submitContact = async (req, res) => {
         `;
 
         // ── Send email ──
-        await transporter.sendMail({
-            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
-            to: process.env.ADMIN_EMAIL,
-            subject: `Contact: ${subject} — from ${name}`,
-            html: emailHTML,
-            replyTo: email,
-        });
+        try {
+            await transporter.sendMail({
+                from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+                to: process.env.ADMIN_EMAIL,
+                subject: `Contact: ${subject} — from ${name}`,
+                html: emailHTML,
+                replyTo: email,
+            });
+        } catch (mailError) {
+            console.error('⚠️ Nodemailer failed to send contact email notification (likely SMTP blocked by Render free tier):', mailError.message);
+        }
 
         // ── Success response ──
         return res.status(201).json({

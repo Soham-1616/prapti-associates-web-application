@@ -180,7 +180,11 @@ exports.submitFeedback = async (req, res) => {
         }
 
         // ── Send email ──
-        await transporter.sendMail(mailOptions);
+        try {
+            await transporter.sendMail(mailOptions);
+        } catch (mailError) {
+            console.error('⚠️ Nodemailer failed to send feedback email notification (likely SMTP blocked by Render free tier):', mailError.message);
+        }
 
         // Clean up uploaded file after sending
         if (photo) {
