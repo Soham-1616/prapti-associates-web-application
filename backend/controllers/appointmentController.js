@@ -67,9 +67,7 @@ exports.bookAppointment = async (req, res) => {
 
         // ── Generate unique ID and save appointment ──
         const appointmentId = generateId();
-        const protocol = req.headers['x-forwarded-proto'] || req.protocol;
-        const host = req.headers['x-forwarded-host'] || req.get('host');
-        const BASE_URL = process.env.BASE_URL || `${protocol}://${host}`;
+        const BASE_URL = process.env.BASE_URL || 'https://prapti-associates.onrender.com';
 
         const appointmentEntry = {
             id: appointmentId,
