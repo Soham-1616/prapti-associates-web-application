@@ -67,7 +67,9 @@ exports.bookAppointment = async (req, res) => {
 
         // ── Generate unique ID and save appointment ──
         const appointmentId = generateId();
-        const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
+        const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+        const host = req.headers['x-forwarded-host'] || req.get('host');
+        const BASE_URL = process.env.BASE_URL || `${protocol}://${host}`;
 
         const appointmentEntry = {
             id: appointmentId,
