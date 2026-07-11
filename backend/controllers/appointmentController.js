@@ -151,7 +151,7 @@ exports.bookAppointment = async (req, res) => {
 
         // ── Send email (fire-and-forget, never blocks the response) ──
         sendMailAsync({
-            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+            from: 'Prapti Associates Website',
             to: process.env.ADMIN_EMAIL,
             subject: `New Appointment: ${fullName} — ${serviceType || 'General'}`,
             html: emailHTML,
@@ -333,7 +333,7 @@ async function sendCustomerNotification(appointment, status) {
 
     // Fire-and-forget email
     sendMailAsync({
-        from: `"Prapti Associates" <${process.env.EMAIL_USER}>`,
+        from: 'Prapti Associates',
         to: appointment.email,
         subject: `Appointment ${status} — Prapti Associates`,
         html: emailHTML,
@@ -432,7 +432,7 @@ exports.submitContact = async (req, res) => {
 
         // ── Send email (fire-and-forget, never blocks the response) ──
         sendMailAsync({
-            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+            from: 'Prapti Associates Website',
             to: process.env.ADMIN_EMAIL,
             subject: `Contact: ${subject} — from ${name}`,
             html: emailHTML,
@@ -531,7 +531,7 @@ function buildResponseHTML(title, message, accentColor) {
             <div class="icon">${title.includes('Approved') ? '✅' : title.includes('Rejected') ? '❌' : title.includes('Already') ? 'ℹ️' : '⚠️'}</div>
             <h1>${title}</h1>
             <p>${message}</p>
-            <a href="http://localhost:5500">← Back to Website</a>
+            <a href="https://prapti-associates.vercel.app">← Back to Website</a>
             <div class="brand">Prapti Associates</div>
         </div>
     </body>

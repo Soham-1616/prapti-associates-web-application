@@ -164,7 +164,7 @@ exports.submitFeedback = async (req, res) => {
 
         // ── Email options ──
         const mailOptions = {
-            from: `"Prapti Associates Website" <${process.env.EMAIL_USER}>`,
+            from: 'Prapti Associates Website',
             to: process.env.ADMIN_EMAIL,
             subject: `Feedback: ${ratingToText(ratingNum)} (${ratingNum}★) — ${clientName}`,
             html: emailHTML,
