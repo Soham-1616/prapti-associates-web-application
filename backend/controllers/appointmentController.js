@@ -2,7 +2,7 @@
 //  APPOINTMENT & CONTACT CONTROLLERS
 // ═══════════════════════════════════════════
 
-const { transporter, sendMailAsync } = require('../config/emailConfig');
+const { sendMailAsync } = require('../config/emailConfig');
 const fs = require('fs');
 const path = require('path');
 

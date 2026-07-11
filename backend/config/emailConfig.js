@@ -1,46 +1,52 @@
 // ═══════════════════════════════════════════
-//  EMAIL CONFIG — Nodemailer Gmail SMTP Setup
+//  EMAIL CONFIG — Resend HTTP Email API
+//  (Replaces Nodemailer SMTP which is blocked on Render free tier)
 // ═══════════════════════════════════════════
 
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
+const fs = require('fs');
 
-// Create reusable transporter using Gmail SMTP
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    family: 4,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-        rejectUnauthorized: false
-    },
-    connectionTimeout: 5000,  // 5s to establish connection (fail fast)
-    greetingTimeout: 5000,    // 5s for SMTP greeting
-    socketTimeout: 10000      // 10s for socket inactivity
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Verify connection on startup (non-blocking, just logs)
-transporter.verify((error, success) => {
-    if (error) {
-        console.warn('⚠️ Email SMTP unavailable:', error.message);
-        console.warn('   Email notifications will be skipped. Forms will still work.');
-    } else {
-        console.log('✅ Email server is ready to send messages');
-    }
-});
+// On Resend free tier, emails must be sent from onboarding@resend.dev
+// To use your own domain (e.g. noreply@praptiassociates.com), verify it in the Resend dashboard
+const FROM_ADDRESS = 'Prapti Associates <onboarding@resend.dev>';
 
-// Helper: send email without blocking the caller (fire-and-forget)
-function sendMailAsync(mailOptions) {
-    transporter.sendMail(mailOptions)
-        .then(() => {
-            console.log(`📧 Email sent: ${mailOptions.subject}`);
-        })
-        .catch((err) => {
-            console.warn(`⚠️ Email failed (non-blocking): ${err.message}`);
+// ── Fire-and-forget email sender ──
+// Called without await in controllers so it never blocks the API response
+async function sendMailAsync(mailOptions) {
+    try {
+        // Convert Nodemailer-style attachments to Resend format (Buffer instead of file path)
+        let attachments;
+        if (mailOptions.attachments && mailOptions.attachments.length > 0) {
+            attachments = mailOptions.attachments
+                .filter(att => att.path && fs.existsSync(att.path))
+                .map(att => ({
+                    filename: att.filename,
+                    content: fs.readFileSync(att.path),
+                }));
+        }
+
+        const { data, error } = await resend.emails.send({
+            from: FROM_ADDRESS,
+            to: Array.isArray(mailOptions.to) ? mailOptions.to : [mailOptions.to],
+            subject: mailOptions.subject || 'Prapti Associates Notification',
+            html: mailOptions.html,
+            replyTo: mailOptions.replyTo || undefined,
+            attachments: attachments && attachments.length > 0 ? attachments : undefined,
         });
+
+        if (error) {
+            console.warn(`⚠️ Resend email failed:`, error);
+        } else {
+            console.log(`📧 Email sent via Resend: "${mailOptions.subject}" (ID: ${data.id})`);
+        }
+    } catch (err) {
+        console.warn(`⚠️ Resend email error (non-blocking): ${err.message}`);
+    }
 }
 
-module.exports = { transporter, sendMailAsync };
+// Startup check
+console.log(process.env.RESEND_API_KEY ? '✅ Resend API key configured — email notifications enabled' : '⚠️ RESEND_API_KEY not set — email notifications will be skipped');
+
+module.exports = { sendMailAsync };
