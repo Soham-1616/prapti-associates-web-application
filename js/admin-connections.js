@@ -4,6 +4,113 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ── Validation Helpers ──
+    function sanitizeText(str) {
+        if (!str) return '';
+        return str.trim().replace(/\s+/g, ' ');
+    }
+
+    function containsMaliciousContent(str) {
+        if (!str) return false;
+        return /<script|<iframe|<img[^>]*onerror|onclick|onload|javascript:|eval\s*\(|<[a-z][^>]*>/i.test(str);
+    }
+
+    function clearValidationErrors() {
+        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        document.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+    }
+
+    function showFieldError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        field.classList.add('is-invalid');
+        const existing = field.parentNode.querySelector('.invalid-feedback');
+        if (existing) existing.remove();
+        const feedback = document.createElement('div');
+        feedback.className = 'invalid-feedback';
+        feedback.textContent = message;
+        feedback.style.display = 'block';
+        field.parentNode.appendChild(feedback);
+    }
+
+    function validateMemberForm() {
+        clearValidationErrors();
+        const errors = [];
+
+        // Full Name
+        const name = sanitizeText(document.getElementById('memberName').value);
+        if (!name) errors.push({ field: 'memberName', msg: 'Full Name is required.' });
+        else if (name.length < 3) errors.push({ field: 'memberName', msg: 'Full Name must be at least 3 characters.' });
+        else if (name.length > 100) errors.push({ field: 'memberName', msg: 'Full Name cannot exceed 100 characters.' });
+        else if (/^[0-9]+$/.test(name)) errors.push({ field: 'memberName', msg: 'Full Name cannot contain only numbers.' });
+        else if (!/^[a-zA-Z\s.\-]+$/.test(name)) errors.push({ field: 'memberName', msg: 'Full Name can only contain letters, spaces, periods, and hyphens.' });
+        else if (containsMaliciousContent(document.getElementById('memberName').value)) errors.push({ field: 'memberName', msg: 'HTML or script tags are not allowed.' });
+
+        // Designation
+        const designation = sanitizeText(document.getElementById('memberDesignation').value);
+        if (!designation) errors.push({ field: 'memberDesignation', msg: 'Designation is required.' });
+        else if (designation.length < 3) errors.push({ field: 'memberDesignation', msg: 'Designation must be at least 3 characters.' });
+        else if (designation.length > 100) errors.push({ field: 'memberDesignation', msg: 'Designation cannot exceed 100 characters.' });
+        else if (containsMaliciousContent(document.getElementById('memberDesignation').value)) errors.push({ field: 'memberDesignation', msg: 'HTML or script tags are not allowed.' });
+
+        // Category
+        const category = document.getElementById('memberCategory').value;
+        if (!category || !['architect', 'engineer', 'coworker', 'custom'].includes(category)) {
+            errors.push({ field: 'memberCategory', msg: 'Please select a valid category.' });
+        }
+
+        // Custom Category
+        if (category === 'custom') {
+            const customCat = sanitizeText(document.getElementById('memberCustomCategory').value);
+            if (!customCat) errors.push({ field: 'memberCustomCategory', msg: 'Custom category name is required.' });
+            else if (customCat.length > 50) errors.push({ field: 'memberCustomCategory', msg: 'Custom category cannot exceed 50 characters.' });
+            else if (containsMaliciousContent(document.getElementById('memberCustomCategory').value)) errors.push({ field: 'memberCustomCategory', msg: 'HTML or script tags are not allowed.' });
+        }
+
+        // Phone (optional)
+        const phone = sanitizeText(document.getElementById('memberPhone').value);
+        if (phone) {
+            const cleaned = phone.replace(/[\s\-]/g, '');
+            if (!/^(\+91)?[6-9]\d{9}$/.test(cleaned)) {
+                errors.push({ field: 'memberPhone', msg: 'Please enter a valid phone number (10-digit Indian mobile or +91 prefix).' });
+            }
+        }
+
+        // Email (optional)
+        const email = sanitizeText(document.getElementById('memberEmail').value);
+        if (email) {
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push({ field: 'memberEmail', msg: 'Please enter a valid email address.' });
+            else if (containsMaliciousContent(document.getElementById('memberEmail').value)) errors.push({ field: 'memberEmail', msg: 'HTML or script tags are not allowed.' });
+        }
+
+        // LinkedIn (optional)
+        const linkedin = sanitizeText(document.getElementById('memberLinkedin').value);
+        if (linkedin) {
+            if (!/^https?:\/\/(www\.)?linkedin\.com\/.+/i.test(linkedin)) {
+                errors.push({ field: 'memberLinkedin', msg: 'LinkedIn URL must be a valid linkedin.com link.' });
+            }
+        }
+
+        // Profile Photo
+        const photoFile = document.getElementById('memberPhoto').files[0];
+        if (photoFile) {
+            const ext = photoFile.name.split('.').pop().toLowerCase();
+            if (!['jpg', 'jpeg', 'png', 'webp'].includes(ext)) {
+                errors.push({ field: 'memberPhoto', msg: 'Profile photo must be JPG, JPEG, PNG, or WEBP.' });
+            } else if (photoFile.size > 5 * 1024 * 1024) {
+                errors.push({ field: 'memberPhoto', msg: 'Profile photo must be under 5 MB.' });
+            }
+        }
+
+        // Show errors
+        errors.forEach(err => showFieldError(err.field, err.msg));
+        if (errors.length > 0) {
+            const firstField = document.getElementById(errors[0].field);
+            if (firstField) firstField.focus();
+        }
+        return errors.length === 0;
+    }
+
     const API = ADMIN_API + '/api/connections';
     const token = getToken();
 
@@ -161,12 +268,14 @@ document.addEventListener('DOMContentLoaded', () => {
         memberCustomCategoryInput.required = false;
         document.getElementById('photoPreviewContainer').innerHTML = '';
         document.getElementById('photoPreviewName').textContent = 'No file chosen';
+        clearValidationErrors();
         connectionModal.show();
     });
 
     // ── Edit Member ──
     window.editMember = async function (id) {
         try {
+            clearValidationErrors();
             const res = await fetch(API + '/' + id);
             const data = await res.json();
             if (!data.success) throw new Error(data.message);
@@ -246,17 +355,22 @@ document.addEventListener('DOMContentLoaded', () => {
     connectionForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // Validate form before submission
+        if (!validateMemberForm()) {
+            return;
+        }
+
         const id = document.getElementById('memberId').value;
         const isEdit = !!id;
 
         const formData = new FormData();
-        formData.append('name', document.getElementById('memberName').value);
-        formData.append('designation', document.getElementById('memberDesignation').value);
+        formData.append('name', sanitizeText(document.getElementById('memberName').value));
+        formData.append('designation', sanitizeText(document.getElementById('memberDesignation').value));
         formData.append('category', document.getElementById('memberCategory').value);
-        formData.append('customCategory', document.getElementById('memberCustomCategory').value);
-        formData.append('phone', document.getElementById('memberPhone').value);
-        formData.append('email', document.getElementById('memberEmail').value);
-        formData.append('linkedin', document.getElementById('memberLinkedin').value);
+        formData.append('customCategory', sanitizeText(document.getElementById('memberCustomCategory').value));
+        formData.append('phone', sanitizeText(document.getElementById('memberPhone').value));
+        formData.append('email', sanitizeText(document.getElementById('memberEmail').value));
+        formData.append('linkedin', sanitizeText(document.getElementById('memberLinkedin').value));
 
         // Profile Photo
         const photoFile = document.getElementById('memberPhoto').files[0];
