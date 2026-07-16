@@ -27,6 +27,116 @@ function generateSlug(name) {
         .trim();
 }
 
+// ── Validation Helpers ──
+const VALID_CATEGORIES = ['residential', 'commercial', 'institutional', 'industrial'];
+const VALID_STATUSES = ['Ongoing', 'Completed', 'Upcoming'];
+
+function sanitizeText(str) {
+    if (!str) return '';
+    return str.toString().trim().replace(/\s+/g, ' ');
+}
+
+function containsMaliciousContent(str) {
+    if (!str) return false;
+    return /<script|<iframe|<img[^>]*onerror|onclick|onload|javascript:|eval\s*\(|<[a-z][^>]*>/i.test(str);
+}
+
+function extractAreaNumber(str) {
+    if (!str) return null;
+    const match = str.toString().trim().match(/^([\d,]+\.?\d*)/);
+    if (!match) return null;
+    const num = parseFloat(match[1].replace(/,/g, ''));
+    return (num > 0) ? num : null;
+}
+
+function validateProjectFields(body, isCreate) {
+    const errors = [];
+    const { name, category, clientName, location, year, area, description, description2, status } = body;
+    const currentYear = new Date().getFullYear();
+
+    // Project Name
+    if (isCreate || name !== undefined) {
+        const n = sanitizeText(name);
+        if (!n) errors.push('Project Name is required.');
+        else if (n.length < 3) errors.push('Project Name must be at least 3 characters.');
+        else if (n.length > 100) errors.push('Project Name cannot exceed 100 characters.');
+        else if (!/^[a-zA-Z0-9\s\-&.,]+$/.test(n)) errors.push('Project Name contains invalid characters.');
+        else if (containsMaliciousContent(name)) errors.push('HTML or script tags are not allowed in Project Name.');
+    }
+
+    // Category
+    if (isCreate || category !== undefined) {
+        const c = category ? category.toLowerCase() : '';
+        if (!c) errors.push('Category is required.');
+        else if (!VALID_CATEGORIES.includes(c)) errors.push('Category must be one of: ' + VALID_CATEGORIES.join(', ') + '.');
+    }
+
+    // Client Name (optional)
+    if (clientName !== undefined && sanitizeText(clientName)) {
+        const cn = sanitizeText(clientName);
+        if (cn.length < 3) errors.push('Client Name must be at least 3 characters.');
+        else if (cn.length > 100) errors.push('Client Name cannot exceed 100 characters.');
+        else if (containsMaliciousContent(clientName)) errors.push('HTML or script tags are not allowed in Client Name.');
+    }
+
+    // Location
+    if (isCreate || location !== undefined) {
+        const loc = sanitizeText(location);
+        if (!loc) errors.push('Location is required.');
+        else if (loc.length > 100) errors.push('Location cannot exceed 100 characters.');
+        else if (containsMaliciousContent(location)) errors.push('HTML or script tags are not allowed in Location.');
+    }
+
+    // Year
+    if (isCreate || year !== undefined) {
+        const y = sanitizeText(year);
+        if (!y) errors.push('Year is required.');
+        else if (!/^\d{4}$/.test(y)) errors.push('Year must be a valid 4-digit number.');
+        else {
+            const yNum = parseInt(y);
+            if (yNum < 1900 || yNum > currentYear + 5) errors.push('Year must be between 1900 and ' + (currentYear + 5) + '.');
+        }
+    }
+
+    // Area
+    if (isCreate || area !== undefined) {
+        const a = sanitizeText(area);
+        if (!a) errors.push('Area is required.');
+        else if (!extractAreaNumber(a)) errors.push('Area must be a positive number (e.g., 3200 or 3200 sq.ft).');
+        else if (containsMaliciousContent(area)) errors.push('HTML or script tags are not allowed in Area.');
+    }
+
+    // Description
+    if (isCreate || description !== undefined) {
+        const d = sanitizeText(description);
+        if (!d) errors.push('Description is required.');
+        else if (d.length < 30) errors.push('Description must be at least 30 characters.');
+        else if (d.length > 3000) errors.push('Description cannot exceed 3000 characters.');
+        else if (containsMaliciousContent(description)) errors.push('HTML or script tags are not allowed in Description.');
+    }
+
+    // Additional Description (optional)
+    if (description2 !== undefined && sanitizeText(description2)) {
+        const d2 = sanitizeText(description2);
+        if (d2.length < 30) errors.push('Additional Description must be at least 30 characters.');
+        else if (d2.length > 3000) errors.push('Additional Description cannot exceed 3000 characters.');
+        else if (containsMaliciousContent(description2)) errors.push('HTML or script tags are not allowed in Additional Description.');
+    }
+
+    // Status
+    if (status !== undefined && status && !VALID_STATUSES.includes(status)) {
+        errors.push('Status must be one of: ' + VALID_STATUSES.join(', ') + '.');
+    }
+
+    return { valid: errors.length === 0, errors };
+}
+
+function sanitizeBody(body) {
+    const fields = ['name', 'clientName', 'location', 'year', 'area', 'description', 'description2'];
+    fields.forEach(f => { if (body[f] !== undefined) body[f] = sanitizeText(body[f]); });
+    return body;
+}
+
 // ────────────────────────────────────────────
 //  GET /api/projects — List all projects
 // ────────────────────────────────────────────
@@ -63,12 +173,15 @@ exports.getById = (req, res) => {
 exports.create = (req, res) => {
     try {
         const projects = readProjects();
-        const { name, category, clientName, location, year, area, status, description, description2 } = req.body;
-
-        // Validation
-        if (!name || !category) {
-            return res.status(400).json({ success: false, message: 'Project name and category are required.' });
+        // Validate input
+        const validation = validateProjectFields(req.body, true);
+        if (!validation.valid) {
+            return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
         }
+
+        // Sanitize input
+        sanitizeBody(req.body);
+        const { name, category, clientName, location, year, area, status, description, description2 } = req.body;
 
         const slug = generateSlug(name);
         const newId = projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1;
@@ -148,6 +261,15 @@ exports.update = (req, res) => {
         }
 
         const existing = projects[index];
+
+        // Validate input
+        const validation = validateProjectFields(req.body, false);
+        if (!validation.valid) {
+            return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
+        }
+
+        // Sanitize input
+        sanitizeBody(req.body);
         const { name, category, clientName, location, year, area, status, description, description2 } = req.body;
 
         // Update slug if name changed

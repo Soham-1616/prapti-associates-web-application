@@ -4,6 +4,115 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ── Validation Helpers ──
+    function sanitizeText(str) {
+        if (!str) return '';
+        return str.trim().replace(/\s+/g, ' ');
+    }
+
+    function containsMaliciousContent(str) {
+        if (!str) return false;
+        return /<script|<iframe|<img[^>]*onerror|onclick|onload|javascript:|eval\s*\(|<[a-z][^>]*>/i.test(str);
+    }
+
+    function extractAreaNumber(str) {
+        if (!str) return null;
+        const match = str.toString().trim().match(/^([\d,]+\.?\d*)/);
+        if (!match) return null;
+        const num = parseFloat(match[1].replace(/,/g, ''));
+        return (num > 0) ? num : null;
+    }
+
+    function clearValidationErrors() {
+        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        document.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+    }
+
+    function showFieldError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        field.classList.add('is-invalid');
+        const existing = field.parentNode.querySelector('.invalid-feedback');
+        if (existing) existing.remove();
+        const feedback = document.createElement('div');
+        feedback.className = 'invalid-feedback';
+        feedback.textContent = message;
+        feedback.style.display = 'block';
+        field.parentNode.appendChild(feedback);
+    }
+
+    function validateProjectForm() {
+        clearValidationErrors();
+        const errors = [];
+        const currentYear = new Date().getFullYear();
+
+        // Project Name
+        const name = sanitizeText(document.getElementById('projectName').value);
+        if (!name) errors.push({ field: 'projectName', msg: 'Project Name is required.' });
+        else if (name.length < 3) errors.push({ field: 'projectName', msg: 'Project Name must be at least 3 characters.' });
+        else if (name.length > 100) errors.push({ field: 'projectName', msg: 'Project Name cannot exceed 100 characters.' });
+        else if (!/^[a-zA-Z0-9\s\-&.,]+$/.test(name)) errors.push({ field: 'projectName', msg: 'Project Name contains invalid characters.' });
+        else if (containsMaliciousContent(document.getElementById('projectName').value)) errors.push({ field: 'projectName', msg: 'HTML or script tags are not allowed.' });
+
+        // Category
+        const category = document.getElementById('projectCategory').value;
+        if (!category || !['residential', 'commercial', 'institutional', 'industrial'].includes(category)) {
+            errors.push({ field: 'projectCategory', msg: 'Please select a valid category.' });
+        }
+
+        // Client Name (optional)
+        const clientName = sanitizeText(document.getElementById('projectClient').value);
+        if (clientName) {
+            if (clientName.length < 3) errors.push({ field: 'projectClient', msg: 'Client Name must be at least 3 characters.' });
+            else if (clientName.length > 100) errors.push({ field: 'projectClient', msg: 'Client Name cannot exceed 100 characters.' });
+            else if (containsMaliciousContent(document.getElementById('projectClient').value)) errors.push({ field: 'projectClient', msg: 'HTML or script tags are not allowed.' });
+        }
+
+        // Location
+        const location = sanitizeText(document.getElementById('projectLocation').value);
+        if (!location) errors.push({ field: 'projectLocation', msg: 'Location is required.' });
+        else if (location.length > 100) errors.push({ field: 'projectLocation', msg: 'Location cannot exceed 100 characters.' });
+        else if (containsMaliciousContent(document.getElementById('projectLocation').value)) errors.push({ field: 'projectLocation', msg: 'HTML or script tags are not allowed.' });
+
+        // Year
+        const year = sanitizeText(document.getElementById('projectYear').value);
+        if (!year) errors.push({ field: 'projectYear', msg: 'Year is required.' });
+        else if (!/^\d{4}$/.test(year)) errors.push({ field: 'projectYear', msg: 'Year must be a valid 4-digit number.' });
+        else {
+            const yNum = parseInt(year);
+            if (yNum < 1900 || yNum > currentYear + 5) errors.push({ field: 'projectYear', msg: 'Year must be between 1900 and ' + (currentYear + 5) + '.' });
+        }
+
+        // Area
+        const area = sanitizeText(document.getElementById('projectArea').value);
+        if (!area) errors.push({ field: 'projectArea', msg: 'Area is required.' });
+        else if (!extractAreaNumber(area)) errors.push({ field: 'projectArea', msg: 'Area must be a positive number (e.g., 3200 or 3200 sq.ft).' });
+        else if (containsMaliciousContent(document.getElementById('projectArea').value)) errors.push({ field: 'projectArea', msg: 'HTML or script tags are not allowed.' });
+
+        // Description
+        const desc = sanitizeText(document.getElementById('projectDesc').value);
+        if (!desc) errors.push({ field: 'projectDesc', msg: 'Description is required.' });
+        else if (desc.length < 30) errors.push({ field: 'projectDesc', msg: 'Description must be at least 30 characters.' });
+        else if (desc.length > 3000) errors.push({ field: 'projectDesc', msg: 'Description cannot exceed 3000 characters.' });
+        else if (containsMaliciousContent(document.getElementById('projectDesc').value)) errors.push({ field: 'projectDesc', msg: 'HTML or script tags are not allowed.' });
+
+        // Additional Description (optional)
+        const desc2 = sanitizeText(document.getElementById('projectDesc2').value);
+        if (desc2) {
+            if (desc2.length < 30) errors.push({ field: 'projectDesc2', msg: 'Additional Description must be at least 30 characters.' });
+            else if (desc2.length > 3000) errors.push({ field: 'projectDesc2', msg: 'Additional Description cannot exceed 3000 characters.' });
+            else if (containsMaliciousContent(document.getElementById('projectDesc2').value)) errors.push({ field: 'projectDesc2', msg: 'HTML or script tags are not allowed.' });
+        }
+
+        // Show errors
+        errors.forEach(err => showFieldError(err.field, err.msg));
+        if (errors.length > 0) {
+            const firstField = document.getElementById(errors[0].field);
+            if (firstField) firstField.focus();
+        }
+        return errors.length === 0;
+    }
+
     const API = ADMIN_API + '/api/projects';
     const token = getToken();
 
@@ -101,12 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('projectId').value = '';
         document.getElementById('heroPreview').innerHTML = '';
         document.getElementById('galleryPreview').innerHTML = '';
+        clearValidationErrors();
         projectModal.show();
     });
 
     // ── Edit Project ──
     window.editProject = async function (id) {
         try {
+            clearValidationErrors();
             const res = await fetch(API + '/' + id);
             const data = await res.json();
             if (!data.success) throw new Error(data.message);
@@ -186,19 +297,24 @@ document.addEventListener('DOMContentLoaded', () => {
     projectForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // Validate form before submission
+        if (!validateProjectForm()) {
+            return;
+        }
+
         const id = document.getElementById('projectId').value;
         const isEdit = !!id;
 
         const formData = new FormData();
-        formData.append('name', document.getElementById('projectName').value);
+        formData.append('name', sanitizeText(document.getElementById('projectName').value));
         formData.append('category', document.getElementById('projectCategory').value);
-        formData.append('clientName', document.getElementById('projectClient').value);
-        formData.append('location', document.getElementById('projectLocation').value);
-        formData.append('year', document.getElementById('projectYear').value);
-        formData.append('area', document.getElementById('projectArea').value);
+        formData.append('clientName', sanitizeText(document.getElementById('projectClient').value));
+        formData.append('location', sanitizeText(document.getElementById('projectLocation').value));
+        formData.append('year', sanitizeText(document.getElementById('projectYear').value));
+        formData.append('area', sanitizeText(document.getElementById('projectArea').value));
         formData.append('status', document.getElementById('projectStatus').value);
-        formData.append('description', document.getElementById('projectDesc').value);
-        formData.append('description2', document.getElementById('projectDesc2').value);
+        formData.append('description', sanitizeText(document.getElementById('projectDesc').value));
+        formData.append('description2', sanitizeText(document.getElementById('projectDesc2').value));
 
         // Hero image
         const heroFile = document.getElementById('projectHero').files[0];
