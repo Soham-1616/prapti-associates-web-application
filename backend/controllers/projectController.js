@@ -6,7 +6,8 @@ const fs = require('fs');
 const path = require('path');
 
 const DATA_FILE = path.join(__dirname, '..', 'data', 'projects.json');
-const FRONTEND_ROOT = path.join(__dirname, '..', '..');
+// Store images within backend directory (works on Render where frontend is on Vercel)
+const IMAGES_ROOT = path.join(__dirname, '..');
 
 // ── Helper: Read/Write JSON ──
 function readProjects() {
@@ -73,7 +74,7 @@ exports.create = (req, res) => {
         const newId = projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1;
 
         // Handle image uploads
-        const projectImgDir = path.join(FRONTEND_ROOT, 'images', 'projects', slug);
+        const projectImgDir = path.join(IMAGES_ROOT, 'images', 'projects', slug);
         if (!fs.existsSync(projectImgDir)) {
             fs.mkdirSync(projectImgDir, { recursive: true });
         }
@@ -154,8 +155,8 @@ exports.update = (req, res) => {
 
         // Handle image directory rename if slug changed
         if (slug !== existing.slug) {
-            const oldDir = path.join(FRONTEND_ROOT, 'images', 'projects', existing.slug);
-            const newDir = path.join(FRONTEND_ROOT, 'images', 'projects', slug);
+            const oldDir = path.join(IMAGES_ROOT, 'images', 'projects', existing.slug);
+            const newDir = path.join(IMAGES_ROOT, 'images', 'projects', slug);
             if (fs.existsSync(oldDir)) {
                 fs.renameSync(oldDir, newDir);
                 // Update existing image paths
@@ -168,7 +169,7 @@ exports.update = (req, res) => {
             }
         }
 
-        const projectImgDir = path.join(FRONTEND_ROOT, 'images', 'projects', slug);
+        const projectImgDir = path.join(IMAGES_ROOT, 'images', 'projects', slug);
         if (!fs.existsSync(projectImgDir)) {
             fs.mkdirSync(projectImgDir, { recursive: true });
         }
@@ -192,7 +193,7 @@ exports.update = (req, res) => {
             if (req.files.galleryImages && req.files.galleryImages.length > 0) {
                 // Clear old gallery files
                 galleryImages.forEach(img => {
-                    const oldPath = path.join(FRONTEND_ROOT, img);
+                    const oldPath = path.join(IMAGES_ROOT, img);
                     if (fs.existsSync(oldPath) && img.includes('gallery-')) {
                         fs.unlinkSync(oldPath);
                     }

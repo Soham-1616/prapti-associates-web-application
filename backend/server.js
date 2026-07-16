@@ -27,7 +27,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());                // Allow cross-origin requests from frontend
 app.use(express.json());        // Parse JSON request bodies
 
-// ── Serve project images from frontend directory ──
+// ── Serve project images ──
+// First check backend/images/ (new uploads on Render), then parent/images/ (seeded local data)
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/images', express.static(path.join(__dirname, '..', 'images')));
 
 // ── Routes ──
