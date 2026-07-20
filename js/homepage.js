@@ -10,8 +10,14 @@
     var HOMEPAGE_API = 'https://prapti-associates.onrender.com/api/homepage';
     var SERVICES_API = 'https://prapti-associates.onrender.com/api/services?activeOnly=true';
 
-    document.addEventListener('DOMContentLoaded', async function () {
-        // ── Load Hero Content ──
+    document.addEventListener('DOMContentLoaded', function () {
+        // Run both fetches independently so one doesn't block the other
+        loadHeroContent();
+        loadHomeServices();
+    });
+
+    // ── Load Hero Content ──
+    async function loadHeroContent() {
         try {
             var res = await fetch(HOMEPAGE_API);
             var json = await res.json();
@@ -29,9 +35,6 @@
             // Heading
             var title = document.getElementById('homeHeroTitle');
             if (title && d.heroHeadingLine1 && d.heroHeadingLine2) {
-                // Split line2 into words; first word gets gold, "and" stays normal, rest gets gold
-                // Original pattern: "Line1<br> <gold>New</gold> and <gold>Consistent.</gold>"
-                // We'll keep the same structure: Line1 <br> <gold>Line2</gold>
                 title.innerHTML = d.heroHeadingLine1 + '<br /><span class="text-gold">' + d.heroHeadingLine2 + '</span>';
             }
 
@@ -79,60 +82,61 @@
             if (s3l && d.stat3Label) s3l.textContent = d.stat3Label;
 
         } catch (error) {
-            // If the API is unavailable, the hardcoded fallback values remain visible
             console.log('[homepage.js] Could not load dynamic content, using defaults.');
         }
+    }
 
-        // ── Load Services Dynamically ──
+    // ── Load Services Dynamically ──
+    async function loadHomeServices() {
         var servicesGrid = document.getElementById('homeServicesGrid');
-        if (servicesGrid) {
-            try {
-                var sRes = await fetch(SERVICES_API);
-                var sData = await sRes.json();
+        if (!servicesGrid) return;
 
-                if (sData.success && sData.data && sData.data.length > 0) {
-                    servicesGrid.innerHTML = '';
-                    sData.data.forEach(function (service, index) {
-                        var isElevated = (index % 2 !== 0) ? ' elevated' : '';
-                        var delay = index * 200;
-                        var iconClass = service.icon || 'bi-tools';
+        try {
+            var sRes = await fetch(SERVICES_API);
+            var sData = await sRes.json();
 
-                        var col = document.createElement('div');
-                        col.className = 'col-md-6 col-lg-4';
-                        col.setAttribute('data-animate', 'fade-up');
-                        if (delay > 0) col.setAttribute('data-delay', delay.toString());
+            if (sData.success && sData.data && sData.data.length > 0) {
+                servicesGrid.innerHTML = '';
+                sData.data.forEach(function (service, index) {
+                    var isElevated = (index % 2 !== 0) ? ' elevated' : '';
+                    var delay = index * 200;
+                    var iconClass = service.icon || 'bi-tools';
 
-                        col.innerHTML =
-                            '<div class="service-card' + isElevated + '">' +
-                                '<div class="service-icon"><i class="bi ' + iconClass + '"></i></div>' +
-                                '<h4 class="service-title">' + service.name + '</h4>' +
-                                '<p class="service-desc">' + service.description + '</p>' +
-                                '<a href="services.html" class="btn btn-service">' +
-                                    'Get Started <i class="bi bi-arrow-right-circle"></i>' +
-                                '</a>' +
-                            '</div>';
+                    var col = document.createElement('div');
+                    col.className = 'col-md-6 col-lg-4';
+                    col.setAttribute('data-animate', 'fade-up');
+                    if (delay > 0) col.setAttribute('data-delay', delay.toString());
 
-                        servicesGrid.appendChild(col);
-                    });
-
-                    // Show carousel arrows if more than 3 services
-                    var arrows = document.getElementById('serviceArrows');
-                    if (arrows && sData.data.length > 3) {
-                        arrows.style.display = '';
-                    }
-                } else {
-                    servicesGrid.innerHTML =
-                        '<div class="col-12 text-center py-4">' +
-                            '<p class="text-muted">No services available at the moment.</p>' +
+                    col.innerHTML =
+                        '<div class="service-card' + isElevated + '">' +
+                            '<div class="service-icon"><i class="bi ' + iconClass + '"></i></div>' +
+                            '<h4 class="service-title">' + service.name + '</h4>' +
+                            '<p class="service-desc">' + service.description + '</p>' +
+                            '<a href="services.html" class="btn btn-service">' +
+                                'Get Started <i class="bi bi-arrow-right-circle"></i>' +
+                            '</a>' +
                         '</div>';
+
+                    servicesGrid.appendChild(col);
+                });
+
+                // Show carousel arrows if more than 3 services
+                var arrows = document.getElementById('serviceArrows');
+                if (arrows && sData.data.length > 3) {
+                    arrows.style.display = '';
                 }
-            } catch (error) {
-                console.log('[homepage.js] Could not load services, showing fallback.');
+            } else {
                 servicesGrid.innerHTML =
                     '<div class="col-12 text-center py-4">' +
-                        '<p class="text-muted">Services could not be loaded. Please try again later.</p>' +
+                        '<p class="text-muted">No services available at the moment.</p>' +
                     '</div>';
             }
+        } catch (error) {
+            console.log('[homepage.js] Could not load services, showing fallback.');
+            servicesGrid.innerHTML =
+                '<div class="col-12 text-center py-4">' +
+                    '<p class="text-muted">Services could not be loaded. Please try again later.</p>' +
+                '</div>';
         }
-    });
+    }
 })();
