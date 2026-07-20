@@ -190,59 +190,17 @@
                 </p>
             </div>
 
-            <div class="row g-4">
-                <!-- Service Card 1 -->
-                <div class="col-md-6 col-lg-4" data-animate="fade-up">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-house-door-fill"></i>
-                        </div>
-                        <h4 class="service-title">Residential</h4>
-                        <p class="service-desc">
-                            We build modern, comfortable, and sustainable residential spaces tailored to your lifestyle.
-                            From villas to apartments, we deliver homes that stand the test of time.
-                        </p>
-                        <a href="services.html" class="btn btn-service">
-                            Get Started <i class="bi bi-arrow-right-circle"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Service Card 2 (Elevated) -->
-                <div class="col-md-6 col-lg-4" data-animate="fade-up" data-delay="200">
-                    <div class="service-card elevated">
-                        <div class="service-icon">
-                            <i class="bi bi-palette-fill"></i>
-                        </div>
-                        <h4 class="service-title">Interior Designs</h4>
-                        <p class="service-desc">
-                            Transform your spaces with our expert interior design services. We blend aesthetics with
-                            functionality to create stunning interiors that reflect your personality.
-                        </p>
-                        <a href="services.html" class="btn btn-service">
-                            Get Started <i class="bi bi-arrow-right-circle"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Service Card 3 -->
-                <div class="col-md-6 col-lg-4" data-animate="fade-up" data-delay="400">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-tools"></i>
-                        </div>
-                        <h4 class="service-title">Structural Repair</h4>
-                        <p class="service-desc">
-                            Our structural repair solutions strengthen and restore buildings using advanced techniques.
-                            We ensure safety, durability, and compliance with all standards.
-                        </p>
-                        <a href="services.html" class="btn btn-service">
-                            Get Started <i class="bi bi-arrow-right-circle"></i>
-                        </a>
+            <div class="row g-4" id="homeServicesGrid">
+                <!-- Services loaded dynamically from API -->
+                <div class="col-12 text-center py-4">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
             </div>
 
             <!-- Service Carousel Arrows -->
-            <div class="service-arrows text-center mt-4">
+            <div class="service-arrows text-center mt-4" id="serviceArrows" style="display:none;">
                 <button class="arrow-btn" aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
                 <button class="arrow-btn" aria-label="Next"><i class="bi bi-arrow-right"></i></button>
             </div>
