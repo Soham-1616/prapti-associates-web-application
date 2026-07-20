@@ -104,8 +104,8 @@
 
                     var col = document.createElement('div');
                     col.className = 'col-md-6 col-lg-4';
-                    col.setAttribute('data-animate', 'fade-up');
-                    if (delay > 0) col.setAttribute('data-delay', delay.toString());
+                    // Note: do NOT add data-animate here — main.js observer runs before
+                    // dynamic cards are injected, so they would never become visible.
 
                     col.innerHTML =
                         '<div class="service-card' + isElevated + '">' +
