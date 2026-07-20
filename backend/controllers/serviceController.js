@@ -20,6 +20,73 @@ function writeServices(services) {
     fs.writeFileSync(DATA_FILE, JSON.stringify(services, null, 4), 'utf-8');
 }
 
+// ── Validation Helpers ──
+const VALID_STATUSES = ['active', 'inactive'];
+
+function sanitizeText(str) {
+    if (!str) return '';
+    return str.toString().trim().replace(/\s+/g, ' ');
+}
+
+function containsMaliciousContent(str) {
+    if (!str) return false;
+    return /<script|<iframe|<img[^>]*onerror|onclick|onload|javascript:|eval\s*\(|<[a-z][^>]*>/i.test(str);
+}
+
+function validateServiceFields(body, isCreate) {
+    const errors = [];
+    const { name, description, icon, displayOrder, status } = body;
+
+    // Service Name
+    if (isCreate || name !== undefined) {
+        const n = sanitizeText(name);
+        if (!n) errors.push('Service Name is required.');
+        else if (n.length < 3) errors.push('Service Name must be at least 3 characters.');
+        else if (n.length > 100) errors.push('Service Name cannot exceed 100 characters.');
+        else if (!/^[a-zA-Z0-9\s\-&.]+$/.test(n)) errors.push('Service Name contains invalid characters.');
+        else if (containsMaliciousContent(name)) errors.push('HTML or script tags are not allowed in Service Name.');
+    }
+
+    // Description
+    if (isCreate || description !== undefined) {
+        const d = sanitizeText(description);
+        if (!d) errors.push('Description is required.');
+        else if (d.length < 20) errors.push('Description must be at least 20 characters.');
+        else if (d.length > 500) errors.push('Description cannot exceed 500 characters.');
+        else if (containsMaliciousContent(description)) errors.push('HTML or script tags are not allowed in Description.');
+    }
+
+    // Icon
+    if (isCreate || icon !== undefined) {
+        const ic = sanitizeText(icon);
+        if (!ic) errors.push('Icon class is required.');
+        else if (!/^bi-[a-z0-9-]+$/.test(ic)) errors.push('Please enter a valid Bootstrap Icon class (e.g., bi-tools, bi-building).');
+        else if (containsMaliciousContent(icon)) errors.push('HTML or script tags are not allowed in Icon.');
+    }
+
+    // Display Order
+    if (isCreate || displayOrder !== undefined) {
+        const o = parseInt(displayOrder);
+        if (!displayOrder && displayOrder !== 0) errors.push('Display Order is required.');
+        else if (isNaN(o) || !Number.isInteger(o)) errors.push('Display Order must be a whole number.');
+        else if (o < 1 || o > 999) errors.push('Display Order must be between 1 and 999.');
+    }
+
+    // Status
+    if (isCreate || status !== undefined) {
+        if (!status) errors.push('Status is required.');
+        else if (!VALID_STATUSES.includes(status)) errors.push('Status must be Active or Inactive.');
+    }
+
+    return { valid: errors.length === 0, errors };
+}
+
+function sanitizeServiceBody(body) {
+    const fields = ['name', 'description', 'icon'];
+    fields.forEach(f => { if (body[f] !== undefined) body[f] = sanitizeText(body[f]); });
+    return body;
+}
+
 // ────────────────────────────────────────────
 //  GET /api/services — List all services
 // ────────────────────────────────────────────
@@ -65,12 +132,16 @@ exports.getById = (req, res) => {
 exports.create = (req, res) => {
     try {
         const services = readServices();
-        const { name, description, icon, displayOrder, status } = req.body;
 
-        // Validation
-        if (!name || !description) {
-            return res.status(400).json({ success: false, message: 'Name and description are required.' });
+        // Validate input
+        const validation = validateServiceFields(req.body, true);
+        if (!validation.valid) {
+            return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
         }
+
+        // Sanitize input
+        sanitizeServiceBody(req.body);
+        const { name, description, icon, displayOrder, status } = req.body;
 
         const newId = services.length > 0 ? Math.max(...services.map(s => s.id)) + 1 : 1;
         
@@ -111,15 +182,16 @@ exports.update = (req, res) => {
         }
 
         const existing = services[index];
-        const { name, description, icon, displayOrder, status } = req.body;
 
-        // Validation
-        if (!name && name !== undefined) {
-            return res.status(400).json({ success: false, message: 'Name cannot be empty.' });
+        // Validate input
+        const validation = validateServiceFields(req.body, false);
+        if (!validation.valid) {
+            return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
         }
-        if (!description && description !== undefined) {
-            return res.status(400).json({ success: false, message: 'Description cannot be empty.' });
-        }
+
+        // Sanitize input
+        sanitizeServiceBody(req.body);
+        const { name, description, icon, displayOrder, status } = req.body;
 
         // Merge updates
         services[index] = {

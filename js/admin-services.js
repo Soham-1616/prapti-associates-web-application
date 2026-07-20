@@ -4,6 +4,82 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ── Validation Helpers ──
+    function sanitizeText(str) {
+        if (!str) return '';
+        return str.trim().replace(/\s+/g, ' ');
+    }
+
+    function containsMaliciousContent(str) {
+        if (!str) return false;
+        return /<script|<iframe|<img[^>]*onerror|onclick|onload|javascript:|eval\s*\(|<[a-z][^>]*>/i.test(str);
+    }
+
+    function clearValidationErrors() {
+        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        document.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+    }
+
+    function showFieldError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        field.classList.add('is-invalid');
+        const existing = field.parentNode.querySelector('.invalid-feedback');
+        if (existing) existing.remove();
+        const feedback = document.createElement('div');
+        feedback.className = 'invalid-feedback';
+        feedback.textContent = message;
+        feedback.style.display = 'block';
+        field.parentNode.appendChild(feedback);
+    }
+
+    function validateServiceForm() {
+        clearValidationErrors();
+        const errors = [];
+
+        // Service Name
+        const name = sanitizeText(document.getElementById('serviceName').value);
+        if (!name) errors.push({ field: 'serviceName', msg: 'Service Name is required.' });
+        else if (name.length < 3) errors.push({ field: 'serviceName', msg: 'Service Name must be at least 3 characters.' });
+        else if (name.length > 100) errors.push({ field: 'serviceName', msg: 'Service Name cannot exceed 100 characters.' });
+        else if (!/^[a-zA-Z0-9\s\-&.]+$/.test(name)) errors.push({ field: 'serviceName', msg: 'Service Name contains invalid characters.' });
+        else if (containsMaliciousContent(document.getElementById('serviceName').value)) errors.push({ field: 'serviceName', msg: 'HTML or script tags are not allowed.' });
+
+        // Description
+        const desc = sanitizeText(document.getElementById('serviceDescription').value);
+        if (!desc) errors.push({ field: 'serviceDescription', msg: 'Description is required.' });
+        else if (desc.length < 20) errors.push({ field: 'serviceDescription', msg: 'Description must be at least 20 characters.' });
+        else if (desc.length > 500) errors.push({ field: 'serviceDescription', msg: 'Description cannot exceed 500 characters.' });
+        else if (containsMaliciousContent(document.getElementById('serviceDescription').value)) errors.push({ field: 'serviceDescription', msg: 'HTML or script tags are not allowed.' });
+
+        // Icon Class
+        let iconVal = sanitizeText(document.getElementById('serviceIcon').value);
+        if (!iconVal.startsWith('bi-') && iconVal.length > 0) iconVal = 'bi-' + iconVal;
+        if (!iconVal) errors.push({ field: 'serviceIcon', msg: 'Icon class is required.' });
+        else if (!/^bi-[a-z0-9-]+$/.test(iconVal)) errors.push({ field: 'serviceIcon', msg: 'Please enter a valid Bootstrap Icon class (e.g., bi-tools, bi-building).' });
+
+        // Display Order
+        const orderVal = document.getElementById('serviceOrder').value;
+        const orderNum = parseInt(orderVal);
+        if (!orderVal) errors.push({ field: 'serviceOrder', msg: 'Display Order is required.' });
+        else if (isNaN(orderNum) || !Number.isInteger(orderNum)) errors.push({ field: 'serviceOrder', msg: 'Display Order must be a positive number.' });
+        else if (orderNum < 1 || orderNum > 999) errors.push({ field: 'serviceOrder', msg: 'Display Order must be between 1 and 999.' });
+
+        // Status
+        const status = document.getElementById('serviceStatus').value;
+        if (!status || !['active', 'inactive'].includes(status)) {
+            errors.push({ field: 'serviceStatus', msg: 'Please select a valid status.' });
+        }
+
+        // Show errors
+        errors.forEach(err => showFieldError(err.field, err.msg));
+        if (errors.length > 0) {
+            const firstField = document.getElementById(errors[0].field);
+            if (firstField) firstField.focus();
+        }
+        return errors.length === 0;
+    }
+
     // ── Variables & Elements ──
     const tbody = document.getElementById('servicesBody');
     const searchInput = document.getElementById('searchService');
@@ -130,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('serviceOrder').value = maxOrder + 1;
         
         iconPreviewElement.className = 'bi bi-tools';
+        clearValidationErrors();
         serviceModal.show();
     });
 
@@ -147,12 +224,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         iconPreviewElement.className = `bi ${service.icon || 'bi-tools'}`;
 
+        clearValidationErrors();
         serviceModal.show();
     }
 
     // ── Submit Form (Create / Update) ──
     serviceForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Validate form before submission
+        if (!validateServiceForm()) {
+            return;
+        }
+
         const btn = document.getElementById('saveServiceBtn');
         const id = document.getElementById('serviceId').value;
         const isEdit = !!id;
@@ -161,12 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.disabled = true;
 
         const token = getToken();
-        let iconVal = document.getElementById('serviceIcon').value.trim();
+        let iconVal = sanitizeText(document.getElementById('serviceIcon').value);
         if (!iconVal.startsWith('bi-') && iconVal.length > 0) iconVal = 'bi-' + iconVal;
 
         const payload = {
-            name: document.getElementById('serviceName').value,
-            description: document.getElementById('serviceDescription').value,
+            name: sanitizeText(document.getElementById('serviceName').value),
+            description: sanitizeText(document.getElementById('serviceDescription').value),
             icon: iconVal,
             displayOrder: document.getElementById('serviceOrder').value,
             status: document.getElementById('serviceStatus').value
