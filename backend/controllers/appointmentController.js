@@ -67,7 +67,7 @@ exports.bookAppointment = async (req, res) => {
 
         // ── Generate unique ID and save appointment ──
         const appointmentId = generateId();
-        const BASE_URL = process.env.BASE_URL || 'https://prapti-associates.onrender.com';
+        const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
 
         const appointmentEntry = {
             id: appointmentId,

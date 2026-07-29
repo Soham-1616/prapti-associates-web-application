@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch testimonials from API
   if (track) {
-    fetch('https://prapti-associates.onrender.com/api/feedback')
+    fetch('http://localhost:5000/api/feedback')
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {

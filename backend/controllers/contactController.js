@@ -11,11 +11,11 @@ const DATA_FILE = path.join(__dirname, '..', 'data', 'contact.json');
 function readContactData() {
     if (!fs.existsSync(DATA_FILE)) {
         const defaultData = {
-            address: "9/ A Mangal Murt,\n Gayatri park near Sanjivni Hospital, Amba Chowk, Kupwad, Sangli (416 436).",
-            primaryPhone: "+91 97639 96291",
-            primaryEmail: "praptiassociates555@gmail.com",
-            secondaryEmail: "umeshkamble008@gmail.com",
-            googleMapsUrl: "https://maps.google.com/maps?q=Amba+Chowk,+Kupwad,+Sangli,+Maharashtra+416436,+India&t=&z=15&ie=UTF8&iwloc=&output=embed",
+            address: "YOUR_OFFICE_ADDRESS",
+            primaryPhone: "+91 XXXXXXXXXX",
+            primaryEmail: "your-email@example.com",
+            secondaryEmail: "",
+            googleMapsUrl: "https://maps.google.com/maps?q=YOUR_LOCATION&output=embed",
             facebookUrl: "#",
             instagramUrl: "#",
             linkedinUrl: "#",

@@ -7,8 +7,9 @@
 (function () {
     'use strict';
 
-    var HOMEPAGE_API = 'https://prapti-associates.onrender.com/api/homepage';
-    var SERVICES_API = 'https://prapti-associates.onrender.com/api/services?activeOnly=true';
+    // ── Set this to your backend API URL ──
+    var HOMEPAGE_API = 'http://localhost:5000/api/homepage';
+    var SERVICES_API = 'http://localhost:5000/api/services?activeOnly=true';
 
     document.addEventListener('DOMContentLoaded', function () {
         // Run both fetches independently so one doesn't block the other

@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             // Backend API base URL
-            const API_BASE = 'https://prapti-associates.onrender.com';
+            // ── Set this to your backend API URL ──
+            const API_BASE = 'http://localhost:5000';
             const endpoint = form.getAttribute('action'); // e.g. /api/appointments
 
             // Determine if form has file inputs (feedback photo, consultancy docs)
@@ -173,7 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //  FEEDBACK REVIEWS — Load & Display
     // ═══════════════════════════════════════════
 
-    const API_BASE_REVIEWS = 'https://prapti-associates.onrender.com';
+    // ── Set this to your backend API URL ──
+    const API_BASE_REVIEWS = 'http://localhost:5000';
     const reviewsContainer = document.getElementById('reviewsContainer');
     const noReviewsMessage = document.getElementById('noReviewsMessage');
 

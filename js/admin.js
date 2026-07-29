@@ -3,7 +3,10 @@
    Phase 1 Foundation — Auth Guard, Login, Logout, Sidebar
    ═══════════════════════════════════════════ */
 
-const ADMIN_API = 'https://prapti-associates.onrender.com';
+// ── IMPORTANT: Set this to your backend API URL ──
+// Local development: 'http://localhost:5000'
+// Production: 'https://YOUR_BACKEND_URL.onrender.com'
+const ADMIN_API = 'http://localhost:5000';
 
 // ══════════════════════════════════════
 //  AUTH — Token Management

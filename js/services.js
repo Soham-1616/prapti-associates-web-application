@@ -5,7 +5,8 @@
 (function () {
     'use strict';
 
-    var SERVICES_API = 'https://prapti-associates.onrender.com/api/services?activeOnly=true';
+    // ── Set this to your backend API URL ──
+    var SERVICES_API = 'http://localhost:5000/api/services?activeOnly=true';
 
     document.addEventListener('DOMContentLoaded', async function () {
         var servicesGrid = document.getElementById('servicesGrid');

@@ -5,7 +5,8 @@
 (function () {
     'use strict';
 
-    var ABOUT_API = 'https://prapti-associates.onrender.com/api/about';
+    // ── Set this to your backend API URL ──
+    var ABOUT_API = 'http://localhost:5000/api/about';
 
     document.addEventListener('DOMContentLoaded', async function () {
         var introTitle = document.getElementById('aboutIntroTitle');

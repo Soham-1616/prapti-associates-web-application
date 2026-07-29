@@ -4,7 +4,8 @@
    and applies category filtering.
    ═══════════════════════════════════════════ */
 
-const PROJECTS_API = 'https://prapti-associates.onrender.com';
+// ── Set this to your backend API URL ──
+const PROJECTS_API = 'http://localhost:5000';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const grid = document.getElementById('projectGrid');

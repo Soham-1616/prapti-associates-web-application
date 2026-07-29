@@ -5,7 +5,8 @@
 (function () {
     'use strict';
 
-    var CONTACT_API = 'https://prapti-associates.onrender.com/api/contact-details';
+    // ── Set this to your backend API URL ──
+    var CONTACT_API = 'http://localhost:5000/api/contact-details';
 
     document.addEventListener('DOMContentLoaded', async function () {
         var addressEl = document.getElementById('contactAddress');

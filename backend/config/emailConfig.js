@@ -8,7 +8,7 @@ const https = require('https');
 const fs = require('fs');
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
-const SENDER_EMAIL = process.env.SENDER_EMAIL || 'patilsoham1616@gmail.com';
+const SENDER_EMAIL = process.env.SENDER_EMAIL || 'noreply@example.com';
 const SENDER_NAME = 'Prapti Associates';
 
 // ── Fire-and-forget email sender ──

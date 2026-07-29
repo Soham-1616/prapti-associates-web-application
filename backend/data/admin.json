@@ -1,4 +1,4 @@
 {
-    "username": "Soham",
-    "passwordHash": "$2b$10$/jpW7bXbxzVX.9Rv0zcowu2gDmiVCAUMk5clSPOMuAsaOGKraXCbS"
+    "username": "admin",
+    "passwordHash": "REPLACE_WITH_BCRYPT_HASH"
 }
